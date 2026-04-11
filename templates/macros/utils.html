@@ -130,11 +130,11 @@
 {% endmacro picture %}
 
 {% macro censored() %}
-    {{ get_env(name="CENSORED", default=false) == "true" }}
+    {{- get_env(name="CENSORED", default='false') -}}
 {% endmacro censored %}
 
 {% macro ness_gender() %}
-    {%- if utils::censored() -%}
+    {%- if utils::censored() == 'true' -%}
         {{- "male" -}}
     {%- else %}
         {{- "female" -}}

@@ -200,14 +200,14 @@
                         <script type="text/javascript" src="https://furryring.neocities.org/onionring-variables.js"></script>
                         <script type="text/javascript" src="https://furryring.neocities.org/onionring-widget.js"></script>
                     </div>
-                    {% if not utils::censored() %}
+                    {% if utils::censored() == 'false' %}
                         <div id="transring" class="menuitem webring">
                             <script src="https://transring.neocities.org/ring.js"></script>
                         </div>
                     {% endif %}
                 </div>
 
-                {% if not utils::censored() %}
+                {% if utils::censored() == 'false' %}
                     <div class="chatbox">
                         <iframe src="https://www3.cbox.ws/box/?boxid=3554028&boxtag=6sFI3N" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
                     </div>
