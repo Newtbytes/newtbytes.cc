@@ -29,6 +29,7 @@
 
 {% block content %}
     <article
+        id="article-top"
         class="{{-cls::entry()-}}"
         property="mainEntity"
         {% block schema %} typeof="Article" {% endblock schema %}
@@ -85,4 +86,7 @@
         {% block references %}
         {% endblock references %}
     </article>
+
+    {# TODO: only add this link if the article is long enough #}
+    <p style="text-align:center"><a href="#article-top">Back to top</a></p>
 {% endblock content %}
