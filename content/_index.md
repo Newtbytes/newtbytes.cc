@@ -28,12 +28,12 @@ Here's a very short and overly vague list of my interests:
 - Creative writing
   - Science fiction, mostly! I'm currently writing a novel. I should write more about that project....
 
-## Links & Socials
+{{ censor(orig='## Links & Socials
 
 - Wikipedia: <a rel="me" href="https://en.wikipedia.org/wiki/User:newtbytes">User:Newtbytes</a>
 - Discord: newtbytes
 - Github: <a rel="me" href="https://github.com/newtbytes">newtbytes</a>
-<!-- FIXME: {{ censor(orig='- transfem.social: <a rel="me" href="https://transfem.social/@newtbytes">@newtbytes@transfem.social</a>') }} -->
+<!-- FIXME: - transfem.social: <a rel="me" href="https://transfem.social/@newtbytes">@newtbytes@transfem.social</a> -->') }}
 
 {{divider(name="happy-star")}}
 
