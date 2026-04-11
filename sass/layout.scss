@@ -55,25 +55,29 @@ main {
 }
 
 .side {
+	--border: 6px ridge;
+	--margin: 3ch;
+
 	padding: 12px;
 	background: var(--blue-bg);
 	color: white;
 	width: 24ch;
 	height: fit-content;
+	border-bottom: var(--border);
 }
 
 .side-left {
 	float: left;
-	margin-right: 3ch;
+	margin-right: var(--margin);
 
-	border-right: 6px ridge;
+	border-right: var(--border);
 }
 
 .side-right {
 	float: right;
-	margin-left: 3ch;
+	margin-left: var(--margin);
 
-	border-left: 6px ridge;
+	border-left: var(--border);
 }
 
 .chatbox {
