@@ -123,7 +123,6 @@ blockquote {
     }
 }
 
-
 .box {
     border: 6px ridge;
     box-sizing: border-box;
@@ -156,16 +155,24 @@ blockquote {
 
 pre {
     background-color: var(#282828) !important;
+
     border-radius: 5px;
     border: none;
-    line-height: 1.4;
-    padding: 1em;
+
+    --padding-x: 0.5em;
+    --padding-y: 0.7em;
+    padding-left: var(--padding-x);
+    padding-right: var(--padding-x);
+    padding-top: var(--padding-y);
+    padding-bottom: var(--padding-y);
+
+    width: fit-content;
+
+    line-height: 1.1em;
+
     position: relative;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-
-    margin-left: 4em;
-    margin-right: 4em;
 
     code {
         background-color: transparent !important;
