@@ -12,3 +12,11 @@
 	--blue-bg: #172872;
 	--blue-readable-bg: #a9b8fd;
 }
+
+a {
+	color: var(--button-col);
+}
+
+h1 a {
+    color: var(--header-col);
+}
