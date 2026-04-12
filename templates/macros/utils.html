@@ -60,7 +60,7 @@
     {{image_url}} {{image_width / smallest_width | int}}x
 {% endmacro srcset %}
 
-{% macro image(path, alt="") %}
+{% macro image(path, alt="", class="") %}
     {% set scales = [2,4,8] %}
     {% set meta = get_image_metadata(path=path) %}
     {% set images = [] %}
@@ -98,18 +98,19 @@
         srcset="{{ utils::srcset(image_path=path, image_width=meta.width, alts=images) }}"
         {% endif %}
         type="{{meta.mime}}"
+        {% if class %} class="{{ class }}" {% endif %}
     >
 {% endmacro image %}
 
-{% macro picture(path, alt="", caption="", formats="") %}
+{% macro picture(path, alt="", caption="", formats="", class="") %}
     {% set meta = get_image_metadata(path=path) %}
 
     {% if not formats %}
         {% set formats = ["webp"] %}
     {% endif %}
 
-    {% if caption %} <figure> {% endif %}
-        {% if 0 < formats | length %} <picture> {% endif %}
+    {% if caption %} <figure {% if class and caption %} class="{{class}}" {% endif %}> {% endif %}
+        {% if 0 < formats | length %} <picture {% if class and not caption %} class="{{class}}" {% endif %}> {% endif %}
             {% for fmt in formats %}
                 {% if not path is ending_with("." ~ fmt) %}
                     {% set img = resize_image(path=path, width=meta.width, height=meta.height, format=fmt) %}
@@ -119,8 +120,6 @@
             {% endfor %}
 
             {{ utils::image(path=path, alt=alt) }}
-
-
         {% if 0 < formats | length %} </picture> {% endif %}
 
         {% if caption%}
