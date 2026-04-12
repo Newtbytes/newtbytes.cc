@@ -1,16 +1,6 @@
 @import "colors";
 @import "fonts";
 
-body {
-    font-family: $body-font;
-    font-optical-sizing: auto;
-    font-kerning: auto;
-
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: grayscale;
-    font-smooth: none;
-}
-
 h1, h2, h3, h4, h5, h6 {
     color: var(--header-col);
 }
@@ -39,9 +29,7 @@ blockquote {
 }
 
 .buttons {
-    a {
-        font-size: 0.7em;
-    }
+    font-size: 1.3em;
 }
 
 @mixin icon {

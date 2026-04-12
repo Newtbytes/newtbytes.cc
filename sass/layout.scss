@@ -46,7 +46,7 @@ main {
 	margin-left: auto;
 	margin-right: auto;
 	width: fit-content;
-	max-width: 80ch;
+	max-width: clamp(min(93.75vw, 50ch), 70vw, 80ch);
 
 	// prevent lists from going behind the sidebar
 	ul, ol, blockquote, aside {
@@ -57,6 +57,8 @@ main {
 .side {
 	--border: 6px ridge;
 	--margin: 3ch;
+
+	@include pixelated-font;
 
 	padding: 12px;
 	background: var(--blue-bg);
@@ -91,7 +93,7 @@ main {
 	line-height: 40px;
 	text-align: center;
 	font-weight: bold;
-	font-family: $secondary-font;
+	font-family: $header-font;
 	font-size: 16px;
 	background-color: var(--button-col);
 	background-image: url("/img/bg/happy_stars.png");
