@@ -220,9 +220,15 @@
         </div>
         <footer>
             <a href="https://discord.gg/DNkEtrqZsY" rel="external nofollow">Discord</a>
-            {% set repo = load_data(url="https://api.github.com/repos/newtbytes/newtbytes.cc", format="json") %}
-            {% set modified = repo['updated_at'] %}
-            {% set year = modified | date(format="%Y") %}
+            {% set repo = load_data(url="https://api.github.com/repos/newtbytes/newtbytes.cc", format="json", required=false) %}
+            {# handle failed requests #}
+            {% if repo %}
+                {% set modified = repo['updated_at'] %}
+                {% set year = modified | date(format="%Y") %}
+            {% else %}
+                {% set modified = "" %}
+                {% set year = "2026" %}
+            {% endif %}
             <p>© ness shannon ˖⁺‧₊˚✦ 
                 <time datetime="2024-09-01" property="datePublished">2024</time>
                 -
