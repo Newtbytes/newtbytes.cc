@@ -38,6 +38,9 @@
 
 {% block posts %}
     {% for page in section.pages %}
+        {% if utils::censored() == 'true' and page.extra | get(key="censored", default=false) %}
+            {% continue %}
+        {% endif %}
         <div class="section-entry {{cls::entry()-}}" property="hasPart" typeof="BlogPosting">
             {{ types::author(visible=false) }}
 
