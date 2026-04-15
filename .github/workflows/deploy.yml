@@ -16,7 +16,6 @@ concurrency:
 
 env:
   ZOLA_VERSION: 0.22.1
-  BUILD_FLAGS: --drafts
 
 jobs:
   # test:
@@ -46,7 +45,6 @@ jobs:
         uses: getzola/github-pages@435a833fd3f1edcb28d70576c89e30a6365cd8f7
         with:
           zola_version: v${{ env.ZOLA_VERSION }}
-          build_flags: ${{ env.BUILD_FLAGS }}
 
   deploy-neocities:
     runs-on: ubuntu-latest
@@ -65,7 +63,7 @@ jobs:
       - name: Build site for neocities
         env:
           DEPLOY_TGT: neocities
-        run: zola build ${{ env.BUILD_FLAGS }}
+        run: zola build
 
       - name: Deploy to neocities
         uses: bcomnes/deploy-to-neocities@v3.0.5
