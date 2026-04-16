@@ -1,3 +1,3 @@
 {% set path = "img/div/" ~ name ~ ".png" %}
 {% set meta = get_image_metadata(path=path) %}
-<img src="{{get_url(path=path)}}" width="{{meta.width}}" height="{{meta.height}}" alt="">
+<img src="{{get_url(path=path)}}" width="{{meta.width}}" height="{{meta.height}}" alt="" class="centered-img">

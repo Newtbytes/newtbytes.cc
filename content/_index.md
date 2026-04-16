@@ -37,17 +37,24 @@ Here's a very short and overly vague list of my interests:
 
 {{divider(name="happy-star")}}
 
+<div style="text-align:center;">
+
 ### ![Warning symbol with a blinking '!' in the center](img/icon/warning.gif) WARNING
 
 this site is super duper ***WIP***!!  
 oh also i have no idea what i'm doing
 
-there's literally no content here yet. maybe one day i'll actually write something.
-For now, just know that somewhere, a nerdy {{ censor(orig="girly", repl="guy") }} that yearns to express {{ censor(orig="her", repl="his") }} passions online exists.
-
 ![Caution! This site under construction!](img/stamp/site_under_construction.gif)
 
-![](img/memes/https___github.com_Kautenja_gym-super-mario-bros_blob_master_gym_super_mario_bros__roms_super-mario-bros.nes.jpg)
+there's not much content here. maybe one day i'll actually write something.
+For now, just know that somewhere, a nerdy {{ censor(orig="girly", repl="guy") }} that yearns to express {{ censor(orig="her", repl="his") }} passions online exists.
+</div>
+
+{{divider(name="happy-star")}}
+
+<div style="float:right;padding:1em;">
+
+![](img/memes/https___github.com_Kautenja_gym-super-mario-bros_blob_master_gym_super_mario_bros__roms_super-mario-bros.nes.jpg)</div>
 
 look at this silliness only i understand
 

@@ -204,3 +204,10 @@ img {
 @keyframes x { 
 	to { offset-distance: 100%; }
 }
+
+
+.centered-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
