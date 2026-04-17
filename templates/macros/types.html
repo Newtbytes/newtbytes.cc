@@ -1,7 +1,7 @@
 {% import "macros/uf/types.html" as uf_types %}
 
 
-{%- macro dt(date, type, visible=true) -%}
+{%- macro dt(date, type, visible=true, format="", timezone="") -%}
     {% set type = type | lower %}
 
     {%- if type == "bday" -%}
@@ -21,7 +21,15 @@
         datetime="{{ date | date(format='%Y-%m-%dT%H:%M:%SZ') }}"
         {% if prop is defined %} property="{{prop}}Date" {% endif %}
     >
-        {%- if visible -%} {{ date }} {%- endif -%}
+        {%- if visible -%}
+            {%- if format and timezone -%}
+                {{ date | date(format=format, timezone=timezone) }}
+            {%- elif format -%}
+                {{ date | date(format=format) }}
+            {%- else -%}
+                {{ date }}
+            {%- endif -%}
+        {%- endif -%}
     </time>
 {%- endmacro dt -%}
 
