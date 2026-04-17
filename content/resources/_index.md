@@ -148,3 +148,6 @@ Pre-made themes, layouts, CSS, etc.
 
 - [Google Rich Results Test](https://search.google.com/test/rich-results)
 - [Schema Markup Validator](https://validator.schema.org)
+- [Transfonter](https://transfonter.org)
+- [Autoprefixer](https://github.com/postcss/autoprefixer): Plugin for PostCSS that generates browser-specific prefixes for your CSS so you only have to use the regular non-prefixed version (no more <code>-moz-whatever</code>!)
+- [Autoprefixer online](https://autoprefixer.github.io): Web version of autoprefixer
