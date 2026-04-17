@@ -107,6 +107,10 @@ Pre-made themes, layouts, CSS, etc.
 ### Website Layout
 
 - [Full-Bleed Layout Using CSS Grid: An elegant solution to a tricky modern layout](https://www.joshwcomeau.com/css/full-bleed/)
+  
+### Fonts
+
+- [Petrapixel - Custom Font Tutorial](https://petrapixel.neocities.org/coding/custom-font-tutorial)
 
 ## Software
 
