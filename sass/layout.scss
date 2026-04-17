@@ -103,6 +103,9 @@ main {
 	text-shadow: 0 0 3px #FFF;
 	letter-spacing: 1px;
 	border: 1px solid #FF8301;
+
+	min-width: fit-content;
+	width: 14ch;
 }
 
 .button:hover {
@@ -153,12 +156,28 @@ footer::after {
 }
 
 .menu {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+
 	border-style: dotted;
 	border-color: white;
 	margin-top: 1lh;
 	margin-bottom: 1lh;
 
 	border-radius: 10px;
+
+	ol {
+		margin: 0;
+	}
+}
+
+.menu > :first-child {
+	margin-top: 12px;
+}
+
+.menu > :last-child {
+	margin-bottom: 12px;
 }
 
 .menu::before {
@@ -172,6 +191,16 @@ footer::after {
 
 .menuitem {
 	margin: 5px;
+}
+
+:is(.menuitem:has(> a), a.menuitem):hover {
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.75);
+}
+
+/* menuitems which are image links */
+a.menuitem:has(> img) {
+	margin: 0;
+	line-height: 0;
 }
 
 nav ol {
