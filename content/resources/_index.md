@@ -77,6 +77,7 @@ Other resource pages that could be useful!!
 Pre-made themes, layouts, CSS, etc.
 
 - [REPTH Themes](https://repth.neocities.org/theme)
+- [Teppy's Layouts & Tips](https://teppyslayouts.neocities.org): My site originally used [this layout](https://teppyslayouts.neocities.org/07/) i *think*, but this one is completely different than the one i remember basing my site off of, so not completely sure.
 
 ## Guides
 
