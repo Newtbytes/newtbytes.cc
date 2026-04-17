@@ -38,6 +38,7 @@ Other resource pages that could be useful!!
 - <https://sadthemes.tumblr.com/smolpxl>: cute animated icons :3
 - [The Frutiger Aero Archive > Icons](https://frutigeraeroarchive.org/icons)
 - [Pixel Icon Library by HackerNoon](https://pixeliconlibrary.com)
+{{censor(orig='- [Identity Buttons](https://www1.flightrising.com/forums/cc/3078623)') }}
 
 ### Blinkies
 
