@@ -133,7 +133,9 @@ Pre-made themes, layouts, CSS, etc.
 ## Structured Data
 
 - [Google rich results types](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
 - [schema.org](https://schema.org)
+- [schema.org validator](https://validator.schema.org) 
 - [microdata spec](https://html.spec.whatwg.org/multipage/microdata.html#microdata)
 
 ### Tools
