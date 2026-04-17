@@ -16,6 +16,10 @@
             {{ year }}
             <ul>
                 {% for page in pages %}
+                    {% if utils::censored() == 'true' and page.extra | get(key="censored", default=false) %}
+                        {% continue %}
+                    {% endif %}
+
                     {% set title = page.title %}
                     {% if not title and page.date %}
                         {% set title = page.date %}
