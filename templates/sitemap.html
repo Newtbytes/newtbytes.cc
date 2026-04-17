@@ -1,0 +1,46 @@
+{% extends "webpage.html" %}
+
+{% import "macros/types.html" as types %}
+
+{% macro map_section(section) %}
+<a href="{{section.permalink}}">{{section.title}}</a>
+<ul>
+    {% for subsection in section.subsections %}
+        {% set subsection = get_section(path=subsection) %}
+        <li>
+            {{self::map_section(section=subsection)}}
+        </li>
+    {% endfor %}
+    {% for year, pages in section.pages | group_by(attribute="year") %}
+        <li>
+            {{ year }}
+            <ul>
+                {% for page in pages %}
+                    {% set title = page.title %}
+                    {% if not title and page.date %}
+                        {% set title = page.date %}
+                    {% endif %}
+                    <li>
+                        {% if page.date %}
+                            {{types::dt(date=page.date, type="published", format="%B %e")}}:
+                        {% endif %}
+
+                        <a href="{{page.permalink}}">{{title}}</a>
+
+                        {% if page.updated %}
+                            <small>(updated {{types::dt(date=page.updated, type="published")}})</small>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+{% endmacro map_section %}
+
+{% block content %}
+    <h1>Sitemap</h1>
+    <ul>
+        <li>{{self::map_section(section=get_section(path="_index.md"))}}</li>
+    </ul>
+{% endblock content %}
