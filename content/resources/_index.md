@@ -133,6 +133,10 @@ Pre-made themes, layouts, CSS, etc.
 
 - <https://github.com/alecthomas/chroma>
 
+#### JavaScript
+
+- [fslightbox.js](https://fslightbox.com): JS library for displaying media in a bigger viewer when you click on it
+
 #### Node
 
 - <https://marked.js.org>
