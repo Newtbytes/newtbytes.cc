@@ -18,6 +18,7 @@ Other resource pages that could be useful!!
 - [The Frutiger Aero Archive > Resources](https://frutigeraeroarchive.org/resources)
 - [Maphren's resources and credits page](https://maphren.neocities.org/?z=/resources_credits)
 - [Cinnamuff's Galaxy | Resources](https://www.cinnamuff.space/resources.html)
+- [plasticdino links page](https://plasticdino.net/links): whole ton of random links :P
 
 ## Assets
 
