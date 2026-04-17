@@ -19,10 +19,10 @@
 {% block toc %}
     {% if section.generate_feeds %}
         {% if "rss.xml" in config.feed_filenames %}
-            <p>{{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/rss.xml">Subscribe to the RSS feed</a></p>
+            <p>{{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/rss.xml" rel="alternate">Subscribe to the RSS feed</a></p>
         {% endif %}
         {% if "atom.xml" in config.feed_filenames %}
-            <p>{{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/atom.xml">Subscribe to the Atom feed</a></p>
+            <p>{{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/atom.xml" rel="alternate">Subscribe to the Atom feed</a></p>
         {% endif %}
     {% endif %}
 
