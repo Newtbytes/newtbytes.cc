@@ -115,6 +115,10 @@ Pre-made themes, layouts, CSS, etc.
 
 ## Software
 
+### Frameworks
+
+- [https://astro.build](Astro): Can be used as a static site generator, but also more. Advertises itself as great for content-based sites like blogs
+
 ### Hosts
 
 #### Static Hosting
