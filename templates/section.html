@@ -58,7 +58,7 @@
                 {% if page.title or page.updated %} · · · {% endif %}
 
                 {# putting the page date here is redundant if the page date is used as the page title #}
-                {% if page.title %} <span class="entry-date">{{ types::dt(date=page.date, type="published") }}</span> {% endif %}
+                {% if page.date %} <span class="entry-date">{{ types::dt(date=page.date, type="published") }}</span> {% endif %}
                 {% if page.updated %}
                     <span class="entry-updated">(updated {{ types::dt(date=page.updated, type="updated") }})</span>
                 {% endif %}
