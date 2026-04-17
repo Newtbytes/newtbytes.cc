@@ -143,7 +143,7 @@
             <div class="title">
                 {{utils::picture(path="img/logo.png", alt="'Newt's Bunker' in 3D purple text on a wavey blue background")}}
             </div>
-            <div class="marquee">
+            <div class="marquee marquee-blinkies">
                 <!-- goobers -->
                 <img src="/img/blink/cinnamoroll.webp" alt="Cinnamoroll peaking their head with a blinking heart next to a 'Cinnamoroll' title card.">
                 <img src="/img/blink/lucario.gif" alt="Pixel art rendition of Lucario next to a 'Lucario' title card">
@@ -236,7 +236,7 @@
             </main>
         </div>
         <footer>
-            <div class="marquee">
+            <div class="marquee marquee-buttons">
                 <img src="img/button/computer.png">
                 <img src="img/button/n64.jpg">
                 <img src="img/button/neocities.gif">
@@ -250,6 +250,16 @@
                 {% endif %}
                 <img src="img/button/linuxhere.gif">
                 <img src="img/button/pbsource.png">
+                {% if utils::censored() == 'false' %}
+                <img src="img/button/ab-trn.png">
+                {% endif %}
+                <img src="img/button/button199.gif">
+                <img src="img/button/button253.gif">
+                <img src="img/button/imagine.gif">
+                <img src="img/button/kawaiicute.gif">
+                <img src="img/button/minecraft.png">
+                <img src="img/button/tumblr_cf891df07148d6b76bf8098a06404807_c8e64ede_100.jpg">
+                <img src="img/button/ublock-now.png">
             </div>
 
             <a href="https://discord.gg/DNkEtrqZsY" rel="external nofollow">Discord</a>
