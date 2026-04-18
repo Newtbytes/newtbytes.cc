@@ -1,56 +1,69 @@
 {% extends "webpage.html" %}
 
 {% import "macros/types.html" as types %}
+{% import "macros/utils.html" as utils %}
 
-{% macro map_section(section) %}
-<a href="{{section.permalink}}">{{section.title}}</a>
-{# <meta property="position" content="{{position}}"> #}
-<ul property="item" typeof="ItemList">
-    <meta property="name" content="{{section.title}}">
+{% macro section_header(title, link="", depth=1) %}
+    <{{utils::level_to_header(level=depth)}}>
+        {% if link %}
+            <a href="{{link}}">{{title}}</a>
+        {% else %}
+            {{title}}
+        {% endif %}
+    </{{utils::level_to_header(level=depth)}}>
+{% endmacro %}
+
+{% macro map_section(section, depth=1) %}
+    {{self::section_header(title=section.title, link=section.permalink, depth=depth)}}
+
+    {% if section.generate_feeds %}
+        <ul>
+            {% if "rss.xml" in config.feed_filenames %}
+                <li><small>
+                    {{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/rss.xml" rel="alternate">RSS feed</a>
+                </small></li>
+            {% endif %}
+            {% if "atom.xml" in config.feed_filenames %}
+                <li><small>
+                    {{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/atom.xml" rel="alternate">Atom feed</a>
+                </small></li>
+            {% endif %}
+        </ul>
+    {% endif %}
 
     {% for subsection in section.subsections %}
         {% set subsection = get_section(path=subsection) %}
-        <li property="itemListElement" typeof="ListItem">
-            {{self::map_section(section=subsection)}}
-            <meta property="position" content="{{loop.index}}">
-        </li>
+        {{self::map_section(section=subsection, depth=depth+1)}}
     {% endfor %}
-
-    {% set subsection_count = section.subsections | length%}
 
     {% for year, pages in section.pages | group_by(attribute="year") %}
-        <li>
-            {{ year }}
-            <ul>
-                {% for page in pages %}
-                    {% if utils::censored() == 'true' and page.extra | get(key="censored", default=false) %}
-                        {% continue %}
+        {{self::section_header(title=year, depth=depth+1)}}
+
+        <ul>
+            {% for page in pages %}
+                {% if utils::censored() == 'true' and page.extra | get(key="censored", default=false) %}
+                    {% continue %}
+                {% endif %}
+
+                {% set title = page.title %}
+                {% if not title and page.date %}
+                    {% set title = page.date %}
+                {% endif %}
+
+                <li>
+                    {% if page.date %}
+                        {{types::dt(date=page.date, type="published", format="%B %e")}}:
                     {% endif %}
 
-                    {% set title = page.title %}
-                    {% if not title and page.date %}
-                        {% set title = page.date %}
+                    <a href="{{page.permalink}}">{{title}}</a>
+
+                    {% if page.updated %}
+                        <small>(updated {{types::dt(date=page.updated, type="published")}})</small>
                     {% endif %}
-                    <li property="itemListElement" typeof="ListItem">
-                        {% if page.date %}
-                            {{types::dt(date=page.date, type="published", format="%B %e")}}:
-                        {% endif %}
-
-                        <a property="item" typeof="WebPage" href="{{page.permalink}}">
-                            <span property="name">{{title}}</span>
-                        </a>
-
-                        {% if page.updated %}
-                            <small>(updated {{types::dt(date=page.updated, type="published")}})</small>
-                        {% endif %}
-
-                        <meta property="position" content="{{subsection_count + loop.index}}">
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
+                </li>
+            {% endfor %}
+        </ul>
     {% endfor %}
-</ul>
 {% endmacro map_section %}
 
 {% block webPageSchema %} typeof="CollectionPage" {% endblock webPageSchema %}
@@ -58,9 +71,5 @@
 {% block content %}
     <h1 property="headline">Sitemap</h1>
 
-    <ul property="mainEntity" typeof="ItemList">
-        <li property="itemListElement" typeof="ListItem">
-            {{self::map_section(section=get_section(path="_index.md"))}}
-        </li>
-    </ul>
+    {{self::map_section(section=get_section(path="_index.md"), depth=2)}}
 {% endblock content %}

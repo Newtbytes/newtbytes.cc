@@ -135,3 +135,11 @@
         {{- "female" -}}
     {%- endif -%}
 {% endmacro ness_gender %}
+
+{% macro level_to_header(level) %}
+    {%- if 1 <= level and level <= 6 -%}
+        h{{level}}
+    {%- else -%}
+        {{ throw(message="Invalid level for level_to_header: level=" ~ level) }}
+    {%- endif -%}
+{% endmacro level_to_header %}
