@@ -137,7 +137,7 @@
     {% endif %}
 </head>
 
-<body class="wrapper-body" vocab="https://schema.org/" {% block webPageSchema %} typeof="WebPage" {% endblock webPageSchema %}>
+<body class="wrapper-body" vocab="https://schema.org/">
     <div class="wrapper">
         <header>
             <div class="title">
@@ -170,7 +170,7 @@
             <img src="/img/other/character.gif" class="character" alt="Ness as a dog or cat-like fursona, wearing a red T-shirt, a green sweater, and flip-flops. Pink text below her says 'I like computers :3'. Ness is hugging her whole PC setup in her arms, display, keyboard, mouse, and PC included. She's surrounded by two pink hearts.">
         </header>
 
-        <div class="page">
+        <div class="page" {% block webPageSchema %} typeof="WebPage" {% endblock webPageSchema %}>
             <div class="side side-left">
                 <nav class="menu buttons" name="Pages">
                     <ol property="breadcrumb" typeof="BreadcrumbList">
@@ -268,7 +268,9 @@
                 <img src="/img/button/ab-trn.png">
                 {% endif %}
                 <img src="/img/button/button199.gif">
+                {% if utils::censored() == 'false' %}
                 <img src="/img/button/button253.gif">
+                {% endif %}
                 <img src="/img/button/imagine.gif">
                 <img src="/img/button/kawaiicute.gif">
                 <img src="/img/button/minecraft.png">
