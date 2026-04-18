@@ -75,3 +75,18 @@
 {% macro icon(fn, size=32) %}
 <img src="/img/icon/{{fn}}" class="icon" width="{{size}}" height="{{size}}">
 {% endmacro icon %}
+
+{% macro section_feeds(section) %}
+    <ul>
+        {% if "rss.xml" in config.feed_filenames %}
+            <li><small>
+                {{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/rss.xml" rel="alternate">RSS feed</a>
+            </small></li>
+        {% endif %}
+        {% if "atom.xml" in config.feed_filenames %}
+            <li><small>
+                {{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/atom.xml" rel="alternate">Atom feed</a>
+            </small></li>
+        {% endif %}
+    </ul>
+{% endmacro section_feeds %}

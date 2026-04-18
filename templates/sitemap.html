@@ -17,18 +17,7 @@
     {{self::section_header(title=section.title, link=section.permalink, depth=depth)}}
 
     {% if section.generate_feeds %}
-        <ul>
-            {% if "rss.xml" in config.feed_filenames %}
-                <li><small>
-                    {{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/rss.xml" rel="alternate">RSS feed</a>
-                </small></li>
-            {% endif %}
-            {% if "atom.xml" in config.feed_filenames %}
-                <li><small>
-                    {{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/atom.xml" rel="alternate">Atom feed</a>
-                </small></li>
-            {% endif %}
-        </ul>
+        {{types::section_feeds(section=section)}}
     {% endif %}
 
     {% for subsection in section.subsections %}
