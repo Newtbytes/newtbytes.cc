@@ -54,9 +54,9 @@
 {% endmacro map_section %}
 
 {% block content %}
-    <h1>Sitemap</h1>
+    <h1 property="headline">Sitemap</h1>
 
-    <ul typeof="BreadcrumbList">
+    <ul property="mainEntity" typeof="BreadcrumbList">
         <li property="itemListElement" typeof="ListItem">
             {{self::map_section(section=get_section(path="_index.md"))}}
         </li>
