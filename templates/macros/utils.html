@@ -143,3 +143,39 @@
         {{ throw(message="Invalid level for level_to_header: level=" ~ level) }}
     {%- endif -%}
 {% endmacro level_to_header %}
+
+{% macro url_join(a, b) %}
+    {%- if a is string %}
+        {%- set components_a = a | split(pat="/") %}
+    {%- elif a is iterable  %}
+        {%- set components_a = a %}
+    {%- endif %}
+
+    {%- if b is string %}
+        {%- set components_b = b | split(pat="/") %}
+    {%- elif b is iterable  %}
+        {%- set components_b = b %}
+    {%- endif %}
+
+    {%- set components = components_a | concat(with=components_b) %}
+
+    {%- set joined = [] %}
+
+    {%- for component in components %}
+        {%- if component %}
+            {%- set_global joined = joined | concat(with=component) %}
+        {%- endif %}
+    {%- endfor %}
+
+    {%- set joined = joined | join(sep="/") %}
+
+    {%- if a is starting_with("/") %}
+        {%- set joined = "/" ~ joined %}
+    {%- endif %}
+
+    {%- if b is ending_with("/") %}
+        {%- set joined = joined ~ "/" %}
+    {%- endif %}
+
+    {{- joined | trim -}}
+{% endmacro %}

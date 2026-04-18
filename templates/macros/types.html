@@ -80,12 +80,14 @@
     <ul>
         {% if "rss.xml" in config.feed_filenames %}
             <li><small>
-                {{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/rss.xml" rel="alternate">RSS feed</a>
+                {{types::icon(fn="rss.svg")}}
+                <a href="{{utils::url_join(a=section.path, b='rss.xml')}}" rel="alternate">RSS feed</a>
             </small></li>
         {% endif %}
         {% if "atom.xml" in config.feed_filenames %}
             <li><small>
-                {{types::icon(fn="rss.svg")}}<a href="{{ section.permalink }}/atom.xml" rel="alternate">Atom feed</a>
+                {{types::icon(fn="rss.svg")}}
+                <a href="{{utils::url_join(a=section.path, b='atom.xml')}}" rel="alternate">Atom feed</a>
             </small></li>
         {% endif %}
     </ul>

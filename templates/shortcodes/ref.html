@@ -1,4 +1,6 @@
-{%- set citations = load_data(path=page.colocated_path ~ "references.bib", format="bibtex", required=false) -%}
+{% import "macros/utils.html" as utils %}
+
+{%- set citations = load_data(path=utils::url_join(a=page.colocated_path, b="references.bib"), format="bibtex", required=false) -%}
 {%- if citations -%}
     {%- for bib in citations.bibliographies -%}
         {%- if bib.citation_key == key -%}
