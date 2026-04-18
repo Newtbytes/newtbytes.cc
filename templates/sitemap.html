@@ -2,26 +2,19 @@
 
 {% import "macros/types.html" as types %}
 
-{% macro map_section(section, position=1) %}
-<a href="{{section.permalink}}">
-    <span property="name">{{section.title}}</span>
-</a>
-<meta property="position" content="{{position}}">
-<ul property="item" typeof="BreadcrumbList">
-    <meta property="name" content="{{section.title}}">
-
+{% macro map_section(section) %}
+<a href="{{section.permalink}}">{{section.title}}</a>
+<ul>
     {% for subsection in section.subsections %}
         {% set subsection = get_section(path=subsection) %}
-        <li property="itemListElement" typeof="ListItem">
-            {{self::map_section(section=subsection, position=position+1)}}
+        <li>
+            {{self::map_section(section=subsection)}}
         </li>
     {% endfor %}
-
     {% for year, pages in section.pages | group_by(attribute="year") %}
-        <li property="itemListElement" typeof="ListItem">
-            <span property="name">{{ year }}</span>
-            <meta property="position" content="{{position+1}}">
-            <ul property="item" typeof="BreadcrumbList">
+        <li>
+            {{ year }}
+            <ul>
                 {% for page in pages %}
                     {% if utils::censored() == 'true' and page.extra | get(key="censored", default=false) %}
                         {% continue %}
@@ -31,20 +24,16 @@
                     {% if not title and page.date %}
                         {% set title = page.date %}
                     {% endif %}
-                    <li property="itemListElement" typeof="ListItem">
+                    <li>
                         {% if page.date %}
                             {{types::dt(date=page.date, type="published", format="%B %e")}}:
                         {% endif %}
 
-                        <a property="item" typeof="WebPage" href="{{page.permalink}}">
-                            <span property="name">{{title}}</span>
-                        </a>
+                        <a href="{{page.permalink}}">{{title}}</a>
 
                         {% if page.updated %}
                             <small>(updated {{types::dt(date=page.updated, type="published")}})</small>
                         {% endif %}
-
-                        <meta property="position" content="{{position+2}}">
                     </li>
                 {% endfor %}
             </ul>
@@ -55,10 +44,7 @@
 
 {% block content %}
     <h1>Sitemap</h1>
-
-    <ul typeof="BreadcrumbList">
-        <li property="itemListElement" typeof="ListItem">
-            {{self::map_section(section=get_section(path="_index.md"))}}
-        </li>
+    <ul>
+        <li>{{self::map_section(section=get_section(path="_index.md"))}}</li>
     </ul>
 {% endblock content %}
