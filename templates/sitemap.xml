@@ -5,6 +5,8 @@
         <loc>{{ entry.permalink | escape_xml | safe }}</loc>
         {%- if entry.updated %}
         <lastmod>{{ entry.updated }}</lastmod>
+        {%- elif entry.date %}
+        <lastmod>{{ entry.date }}</lastmod>
         {%- endif %}
         {%- if entry.extra["update_frequency"] %}
         <changefreq>{{ entry.extra["update_frequency"] }}</changefreq>
