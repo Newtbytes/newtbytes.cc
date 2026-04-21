@@ -1,15 +1,16 @@
 {
-	"zolaPost": {
-		"prefix": "zolaPost",
+	"newPost": {
+		"prefix": "newPost",
 		"scope": "markdown",
 		"body": [ // the contents of the snippet
 			"+++",
-			"title = \"${TM_FILENAME/[0-9]+-[0-9]+-[0-9]+[ ](.*).md$/$1/}\" ",
-			"date = ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}${CURRENT_TIMEZONE_OFFSET}",
+			"title = \"${TM_FILENAME/[0-9]+-[0-9]+-[0-9]+[ ](.*).md$/$1/}\"",
+			"date = ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
 			"authors = [\"newtbytes\"]",
-			"[taxonomies]",
-			"tags = [$2]",
+			"+++",
+			"",
+			""
 		],
-		"description": "zolaPost"
+		"description": "Create the frontmatter for a new blog post with the title and date pre-filled."
 	}
 }
