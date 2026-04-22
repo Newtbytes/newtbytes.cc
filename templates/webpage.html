@@ -173,25 +173,21 @@
         <div class="page" {% block webPageSchema %} typeof="WebPage" {% endblock webPageSchema %}>
             <div class="side side-left">
                 <nav class="menu buttons" name="Pages">
-                    <ol property="breadcrumb" typeof="BreadcrumbList">
+                    <ol>
                         {% set home = get_section(path="_index.md") %}
-                        <li property="itemListElement" typeof="ListItem">
-                            <a  href="{{ home.permalink | safe }}" class="menuitem button" 
-                                property="item" typeof="WebPage">
-                                <span property="name">{{ home.title }}</span>
+                        <li>
+                            <a href="{{ home.permalink | safe }}" class="menuitem button">
+                                {{ home.title }}
                             </a>
-                            <meta property="position" content="1">
                         </li>
 
                         {% for path in home.subsections %}
                             {% set subsection = get_section(path=path) %}
                             {% if "button" in subsection.extra %}
-                                <li property="itemListElement" typeof="ListItem">
-                                    <a  href="{{ subsection.permalink | safe }}" class="menuitem button" 
-                                        property="item" typeof="WebPage">
-                                        <span property="name">{{ subsection.extra["button"] }}</span>
+                                <li>
+                                    <a href="{{ subsection.permalink | safe }}" class="menuitem button">
+                                        {{ subsection.extra["button"] }}
                                     </a>
-                                    <meta property="position" content="2">
                                 </li>
                             {% endif %}
                     {% endfor %}
