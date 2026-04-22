@@ -11,41 +11,39 @@
 {% endblock schema %}
 
 {% block content %}
-    <header>
-        {% set home = get_section(path="_index.md") %}
-        {% set position = 1%}
+    {% set home = get_section(path="_index.md") %}
+    {% set position = 1%}
 
-        <div property="breadcrumb" typeof=""BreadcrumbList">        
-            {% for path in page.ancestors %}
-                {% set section = get_section(path=path) %}
-                {% if loop.index > 1 %}
-                >
-                {% endif %}
-                <span property="itemListElement" typeof="ListItem">
-                    <a href="{{ section.permalink | safe }}" property="item" typeof="WebPage">
-                        <span property="name">
-                            {% if "button" in section.extra %}
-                                {{ section.extra["button"] }}
-                            {% else %}
-                                {{ section.title }}
-                            {% endif %}
-                        </span>
-                    </a>
-                    <meta property="position" content="{{ loop.index }}">
-                </span>
-                {% set_global position = position + 1 %}
-            {% endfor %}
-
-            {% if page.ancestors|length > 0 %} > {% endif %}
-
+    <div property="breadcrumb" typeof=""BreadcrumbList">        
+        {% for path in page.ancestors %}
+            {% set section = get_section(path=path) %}
+            {% if loop.index > 1 %}
+            >
+            {% endif %}
             <span property="itemListElement" typeof="ListItem">
-                <a href="{{ page.permalink | safe }}" property="item" typeof="WebPage">
-                    <span property="name">{{ page.title }}</span>
+                <a href="{{ section.permalink | safe }}" property="item" typeof="WebPage">
+                    <span property="name">
+                        {%- if "button" in section.extra %}
+                            {{- section.extra["button"] -}}
+                        {% else %}
+                            {{- section.title -}}
+                        {% endif -%}
+                    </span>
                 </a>
-                <meta property="position" content="{{ position }}">
+                <meta property="position" content="{{ loop.index }}">
             </span>
-        </div>
-    </header>
+            {% set_global position = position + 1 %}
+        {% endfor %}
+
+        {% if page.ancestors|length > 0 %} > {% endif %}
+
+        <span property="itemListElement" typeof="ListItem">
+            <a href="{{ page.permalink | safe }}" property="item" typeof="WebPage">
+                <span property="name">{{ page.title }}</span>
+            </a>
+            <meta property="position" content="{{ position }}">
+        </span>
+    </div>
 
     {{ super() }}
 {% endblock content %}
