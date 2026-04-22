@@ -9,7 +9,7 @@
 
 {% macro website(url, title="", desc="") %}
     <meta property="og:url" content="{{ url | safe }}">
-    <meta property="og:site_name" content="{{ config.base_url | safe }}">
+    <meta property="og:site_name" content="{{ config.title | safe }}">
     {% if title %}<meta property="og:title" content="{{ title }}">{% endif%}
     {% if desc %}<meta property="og:description" content="{{ desc | striptags }}">{% endif%}
 {% endmacro website %}
