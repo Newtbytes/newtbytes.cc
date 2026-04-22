@@ -33,3 +33,4 @@ theme = "catppuccin-frappe"
 
 [extra]
 family_mode = false
+domain = "newtbytes.cc"

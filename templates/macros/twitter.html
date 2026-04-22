@@ -2,7 +2,7 @@
 
 {% macro metadata(url, img="", title="", desc="") %}
     <meta property="twitter:url" content="{{ url | safe }}">
-    <meta property="twitter:domain" content="{{ config.base_url | safe }}">
+    <meta property="twitter:domain" content="{{ config.extra.domain | safe }}">
 
     {% if img %}
         <meta name="twitter:card" content="summary_large_image">
