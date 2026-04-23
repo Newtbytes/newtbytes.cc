@@ -11,8 +11,7 @@ Artemis II launched today (April 1st), a couple hours ago at the time of writing
 
 {% censor() %}
 <!-- me: "T-010:00!!" -->
-<iframe src="https://transfem.social/embed/notes/akk6ifiniebd0010" data-misskey-embed-id="v1_33bc0b73-dab7-4f1b-ad14-d32fd787c0d9" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" style="border: none; width: 100%; max-width: 500px; height: 300px; color-scheme: light dark;"></iframe>
-<script defer src="https://transfem.social/embed.js"></script>
+{{ note(id="akk6ifiniebd0010") }}
 {% end %}
 
 NASA again reminds me that they *do*, in fact, play Kerbal Space Program better than I do. Not even pre-launch, but pre-*countdown* there was a whole slew of system checks reminding me that rockets are quite literally rocket science and there is an incomprehensible level of detail in every aspect of this mission I have yet to even fathom of. Which is...pretty awesome I'm ngl.
@@ -20,12 +19,10 @@ NASA again reminds me that they *do*, in fact, play Kerbal Space Program better 
 {% censor() %}
 <!-- me: "SPACE AAHH SPACE ARTEMIS II AHHH
 I am perhaps the physical manifestation of the space core from Portal 2 right now #artemis" -->
-<iframe src="https://transfem.social/embed/notes/akk7elntvkp2001s" data-misskey-embed-id="v1_9e3b1501-c1ea-4a2c-9e2b-4bf30fa4c8f5" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" style="border: none; width: 100%; max-width: 500px; height: 300px; color-scheme: light dark;"></iframe>
-<script defer src="https://transfem.social/embed.js"></script>
+{{ note(id="akk7elntvkp2001s") }}
 
 <!-- Pictures of Earth taken by Artemis II -->
-<iframe src="https://transfem.social/embed/notes/akmrabi5n7gx001j" data-misskey-embed-id="v1_38fa8285-124b-4975-9990-e6ff8dd989e4" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" style="border: none; width: 100%; max-width: 500px; height: 300px; color-scheme: light dark;"></iframe>
-<script defer src="https://transfem.social/embed.js"></script>
+{{ note(id="akmrabi5n7gx001j") }}
 {% end %}
 
 <!-- ret: 'One of my highlights from the Artemis II launch yesterday was on Sky News when the reporter interviewed a guy after the launch. 
@@ -45,8 +42,7 @@ As a young tiny little baby child, I possessed my very own copy of the Steam cli
 
 {% censor() %}
 <!-- me: ":Blobhaj_Rocket_Hug: many have suggested the parallels between #artemisii and kerbal space program, but many fail to notice the strong similarities to the mobile video game Bad Piggies" -->
-<iframe src="https://transfem.social/embed/notes/akk82qi8ozw70008" data-misskey-embed-id="v1_83c88461-a824-41ec-92e5-1cffa9421e3f" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" style="border: none; width: 100%; max-width: 500px; height: 300px; color-scheme: light dark;"></iframe>
-<script defer src="https://transfem.social/embed.js"></script>
+{{ note(id="akk82qi8ozw70008") }}
 {% end %}
 
 ## The Toilet Saga
@@ -60,8 +56,7 @@ Unfortunately, the Universal Waste Management System, in all its groundbreaking 
 {% censor(repl='They fixed Orions toilet!! they can now eject pee into space again >:3c') %}
 <!-- me: "GOOD NEWS :bugcat_excited:
 they fixed Orions toilet!! they can now eject piss into space again >:3c #artemis" -->
-<iframe src="https://transfem.social/embed/notes/aklhp69x01dl0015" data-misskey-embed-id="v1_8938c903-ab4f-4487-a0f2-2ea69e4e24fd" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" style="border: none; width: 100%; max-width: 500px; height: 300px; color-scheme: light dark;"></iframe>
-<script defer src="https://transfem.social/embed.js"></script>
+{{note(id="aklhp69x01dl0015")}}
 {% end %}
 
 Yup! They fixed it today (April 2nd).{{ref(key="malik2026")}}{{ref(key="zakrzewski2026")}} Mission Specialist Christina Koch said she was the 'plumber' and fixed the toilet lol.{{ref(key="abcnews2026")}}

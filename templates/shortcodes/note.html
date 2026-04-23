@@ -1,0 +1,12 @@
+{% import "macros/utils.html" as utils %}
+
+{% set host = "transfem.social" %}
+
+<iframe
+    src="https://{{ host }}/embed/notes/{{ id }}"
+    data-misskey-embed-id="v1_{{ utils::rand_str(length=16) }}"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    style="border: none; width: 100%; max-width: 500px; height: 300px; color-scheme: light dark;"
+></iframe>
+<script defer src="https://{{ host }}/embed.js"></script>

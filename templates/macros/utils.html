@@ -179,3 +179,11 @@
 
     {{- joined | trim -}}
 {% endmacro %}
+
+{% macro rand_str(length) %}
+    {%- set result = "" %}
+    {%- for i in range(end=length) %}
+        {%- set_global result = result ~ get_random(end=64) %}
+    {%- endfor %}
+    {{- result -}}
+{% endmacro rand_str %}
