@@ -107,7 +107,7 @@
     <h2>Replies</h2>
     <ol class="replies">
         {% for reply in replies %}
-            <li class="{{cls::entry()}}">
+            <li class="{{cls::entry()}} {{cls::citation()}}">
                 {% set date = reply | get(key="published", default="") %}
                 {% set author = reply | get(key="author") %}
                 {% set content = reply | get(key="content") %}
