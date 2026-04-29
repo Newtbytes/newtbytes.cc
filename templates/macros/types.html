@@ -34,7 +34,7 @@
 {%- endmacro dt -%}
 
 
-{% macro author(name="", url="", visible=true) %}
+{% macro author(name="", url="", visible=true, inline=true) %}
     {% if not name %} 
         {% set name = config.author %}
     {% endif %}
@@ -49,18 +49,19 @@
             {% set rel = "author" %}
         {% endif %}
 
-        <address class="{{-cls::author()}} {{cls::profile()-}}" property="author" typeof="Person">
+        {% if inline %}<span{% else %}<address{%endif%} class="{{-cls::author()}} {{cls::profile()-}}" property="author" typeof="Person">
             <a 
                 href="{{ url | safe }}"
-                class="{{-cls::url()}}
-                {%- if visible and name -%}{{cls::name()}}{%- endif -%}"
+                class="{{cls::url()}}"
                 rel="{{ rel }}"
                 property="url"
-                {% if not visible %}title="{{name}}"{% endif %}
+                {% if not visible and name %}title="{{name}}"{% endif %}
             >
-                {% if visible and name %}<span property="name">{{ name }}</span>{% endif %}
+                {% if visible and name %}
+                    <span property="name" class="{{cls::name()}}">{{ name }}</span>
+                {% endif %}
             </a>
-        </address>
+        {% if inline %}</span>{% else %}</address>{%endif%}
 
     {% else %}
         <{% if visible %}span{% else %}data{% endif %}

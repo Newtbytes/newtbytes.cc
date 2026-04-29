@@ -1,4 +1,5 @@
 {% import "macros/types.html" as types %}
+{% import "macros/uf/classes.html" as cls %}
 
 {% extends "webpage.html" %}
 
@@ -86,6 +87,72 @@
         {% block references %}
         {% endblock references %}
     </article>
+
+    {% set url = "" %}
+
+    {% if current_url is defined %}
+        {% set url = current_url %}
+    {% elif meta_url is defined %}
+        {% set url = meta_url %}
+    {% elif page is defined %}
+        {% set url = page.permalink %}
+    {% endif %}
+
+    {% if url %}
+        {% set replies = load_data(url="https://webmention.io/api/mentions.jf2?target=" ~ current_url ~ "&wm-property=in-reply-to", format="json") %}
+        {% set replies = replies | get(key="children", default=[]) %}
+    {% endif %}
+
+    {% if replies %}
+    <h2>Replies</h2>
+    <ol class="replies">
+        {% for reply in replies %}
+            <li class="{{cls::entry()}}">
+                {% set date = reply | get(key="published", default="") %}
+                {% set author = reply | get(key="author") %}
+                {% set content = reply | get(key="content") %}
+                {% set html = content | get(key="html", default="") %}
+                {% set text = content | get(key="text", default="") %}
+                {% set url = reply | get(key="url", default="") %}
+
+                {% if not html and not text %}
+                    {% continue %}
+                {% endif %}
+
+                <header>
+                    Reply from
+
+                    {{- types::author(
+                        name = author | get(key="name", default=""),
+                        url = author | get(key="url", default="")
+                    ) -}}
+
+                    {% if date %}
+                        , published on {{types::dt(date=date, type="published", format="%F")}}
+                        at {{ date | date(format="%X") -}}
+                    {% endif -%}
+                </header>
+
+                <article>
+                    <blockquote class="{{cls::summary()}}">
+                        {{- text | truncate(length=175) -}}
+                    </blockquote>
+                    <div class="{{cls::content()}}" style="display:none;">
+                        {{- text -}}
+                    </div>
+                </article>
+
+                {% if url %}<footer>
+                    <a rel="external nofollow noopener ugc" href="{{url}}"
+                        style="text-align:right;"
+                    >
+                        View original
+                    </a>
+                </footer>{% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+    {% endif %}
 
     {# TODO: only add this link if the article is long enough #}
     <p style="text-align:center"><a href="#article-top">Back to top</a></p>

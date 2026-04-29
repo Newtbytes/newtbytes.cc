@@ -27,7 +27,7 @@ html {
 	margin-top: 20px;
 }
 
-header {
+header:not(main *) {
 	border-bottom: 6px ridge;
 	background-image: url('/img/bg/magic_lagoon.gif');
 }
@@ -130,26 +130,23 @@ img {
 	height: auto;
 }
 
-footer {
+// select footers that are not children of main elements
+footer:not(main *) {
 	border-top: 6px ridge;
 	min-height: 64px;
 	background-image: url("/img/bg/purple_clouds.png");
 	text-align: center;
 	color: aliceblue;
 	text-shadow: 1px 1px 2px darkorchid;
+	margin: 0;
+	clear: both;
 
 	p {
 		margin: 0;
 	}
 }
 
-footer {
-	color: aliceblue;
-	margin: 0;
-	clear: both;
-}
-
-footer::after {
+footer:not(main *)::after {
 	/* color: aliceblue;
 	margin: 0; */
 	content: "Icons from Pixel Icon Library by HackerNoon";
