@@ -1,7 +1,7 @@
 {% import "macros/uf/types.html" as uf_types %}
 
 
-{%- macro dt(date, type, visible=true, format="", timezone="") -%}
+{%- macro dt(date, type, visible=true, for="", format="", timezone="") -%}
     {% set type = type | lower %}
 
     {%- if type == "bday" -%}
@@ -16,8 +16,19 @@
         {% set prop = prop | capitalize %}
     {% endif %}
 
+    {% set class = cls::dt(type=type) %}
+    {% if for == "entry" %}
+        {% if type == "published" or type == "date" %}
+            {% set class = class ~ " entry-date" %}
+        {% endif %}
+
+        {% if type == "updated" or type == "modified" %}
+            {% set class = class ~ " entry-updated" %}
+        {% endif %}
+    {% endif %}
+
     <time
-        class="{{cls::dt(type=type)}}"
+        class="{{class}}"
         datetime="{{ date | date(format='%Y-%m-%dT%H:%M:%SZ') }}"
         {% if prop is defined %} property="{{prop}}Date" {% endif %}
     >

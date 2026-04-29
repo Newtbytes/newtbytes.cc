@@ -47,7 +47,7 @@
                         {% if page.title %}
                             {{ page.title }}
                         {% elif page.date %}
-                            <span class="entry-date">{{ types::dt(date=page.date, type="published") }}</span>
+                            {{ types::dt(date=page.date, type="published", for="entry") }}
                         {% endif %}
                     </b>
                 </a>
@@ -55,9 +55,11 @@
                 {% if page.title or page.updated %} · · · {% endif %}
 
                 {# putting the page date here is redundant if the page date is used as the page title #}
-                {% if page.date %} <span class="entry-date">{{ types::dt(date=page.date, type="published") }}</span> {% endif %}
+                {% if page.date %}
+                    {{ types::dt(date=page.date, type="published", for="entry") }}
+                {% endif %}
                 {% if page.updated %}
-                    <span class="entry-updated">(updated {{ types::dt(date=page.updated, type="updated") }})</span>
+                    (updated {{ types::dt(date=page.updated, type="updated", for="entry") }})
                 {% endif %}
             </p>
 
