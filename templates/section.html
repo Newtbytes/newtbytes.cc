@@ -63,6 +63,17 @@
                 {% endif %}
             </p>
 
+            {% if "tags" in page.taxonomies and page.taxonomies["tags"] %}
+                <ul class="hlist">
+                    {% for tag in page.taxonomies["tags"] %}
+                        {% set url = get_taxonomy_url(kind="tags", name=tag) %}
+                        <li>
+                            <a href="{{url}}">{{tag}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
             {% if section.extra | get(key="inline_pages", default=true) %}
                 {% if page.summary %}
                     <div class="{{-cls::summary()-}}" property="abstract">{{ page.summary | safe }}</div>
