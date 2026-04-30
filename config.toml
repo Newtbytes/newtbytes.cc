@@ -18,6 +18,11 @@ build_search_index = true
 
 generate_robots_txt = true
 
+taxonomies = [
+    { name = "tags", feed = false },
+    { name = "project", feed = true },
+]
+
 [markdown]
 # since I often write on platforms that automatically insert smart punctuation,
 # might as well make sure it's consistent across the whole site

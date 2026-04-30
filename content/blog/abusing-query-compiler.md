@@ -2,6 +2,9 @@
 title = "Abusing the powers of query based compilers (draft)"
 date = 2025-05-25
 draft = true
+
+[taxonomies]
+tags = ["Programming", "Compilers", "Syntax", "Language Design"]
 +++
 
 Long before spacetime had been born, wizards of olde fought in the endless legendary debates of naming conventions. Some wielded CamelCase as heavy handily as they wielded C++ and Java. Others wielding the incomprehensible powers of snake_case could materialize deep learning codebases using only a wave of their hand and 16 gigabytes of Python extension modules. The wizards using Upper_Snake_Case died out long ago.
