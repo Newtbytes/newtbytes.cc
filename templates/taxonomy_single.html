@@ -1,0 +1,33 @@
+{% extends "article.html" %}
+
+{% import "macros/types.html" as types %}
+
+{% block title %}{{ term.name | title }}{% endblock %}
+
+{% block desc %}Posts tagged "{{ term.name }}"{% endblock %}
+
+{% block body %}
+    <div class="taxonomy-terms">
+        {% for page in term.pages %}
+            <div class="card">
+                <h2 class="title">
+                    <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+                </h2>
+                <article class="content">
+                    {% if page.description %}
+                        <p class="description">
+                            {{ page.description }}
+                        </p>
+                    {% endif %}
+                </article>
+                <div class="meta">
+                    {% if page.date %}
+                        {{types::dt(date=page.date, type="published", format="%B %d, %Y")}}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="{{ get_url(path='tags') }}">View all tags</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+.card {
+    background: palegoldenrod;
+    padding: 1em;
+    border-radius: 20px;
+
+    .title {
+        margin: 0;
+        font-size: 1em;
+    }
+
+    .description {}
+
+    .content {}
+
+    .meta {}
+
+    &:hover {
+        size-adjust: 1.5;
+    }
+}
