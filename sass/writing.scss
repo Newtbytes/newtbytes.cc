@@ -31,6 +31,21 @@ blockquote {
     padding-bottom: 1px;
 }
 
+:is(ul, ol).hlist {
+    margin: 0;
+    padding: 0;
+
+    list-style: none outside;
+
+    li {
+        display: inline;
+    }
+
+    li + li::before {
+        content: "•"
+    }
+}
+
 .buttons {
     font-size: 1.3em;
 }
