@@ -3,7 +3,7 @@ title = "New project! Writing a C Compiler"
 date = 2026-02-20
 
 [taxonomies]
-tags = ["Programming", "Programming", "Compilers", "Compiler Construction"]
+tags = ["Programming", "Compilers", "Compiler Construction"]
 project = ["crustydrageon"]
 +++
 
