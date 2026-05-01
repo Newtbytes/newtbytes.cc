@@ -1,5 +1,4 @@
 +++
-title = "home"
 description = "Newt's cove home page - my own little internet space!!"
 template = "index.html"
 +++
