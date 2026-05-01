@@ -1,0 +1,14 @@
+{% import "macros/uf/classes.html" as cls %}
+{% import "macros/types.html" as types %}
+
+{% macro like_of(url, display="") %}
+    {{types::link(url=url, title=title, class=cls::like())}}
+{% endmacro like_of %}
+
+{% macro repost_of(url, display="") %}
+    {{types::link(url=url, title=title, class=cls::repost())}}
+{% endmacro repost_of %}
+
+{% macro reply_to(url, title="") %}
+    {{types::link(url=url, title=title, class=cls::reply())}}
+{% endmacro reply_to %}

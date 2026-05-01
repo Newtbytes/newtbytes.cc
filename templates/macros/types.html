@@ -45,6 +45,27 @@
 {%- endmacro dt -%}
 
 
+{% macro link(url, title="", visible=true, class="") %}
+    {% if not title %}
+        {% set title = url %}
+    {% endif %}
+
+    <a
+        href="{{url}}"
+        {% if title != url and not visible %}
+        title="{{title}}"
+        {% endif %}
+        {% if class %}
+        class="{{class}}"
+        {% endif %}
+    >
+        {% if visible %}
+            {{ title }}
+        {% endif %}
+    </a>
+{% endmacro link %}
+
+
 {% macro author(name="", url="", visible=true, inline=true) %}
     {% if not name %} 
         {% set name = config.author %}
