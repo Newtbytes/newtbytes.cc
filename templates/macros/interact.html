@@ -12,3 +12,13 @@
 {% macro reply_to(url, title="") %}
     {{types::link(url=url, title=title, class=cls::reply())}}
 {% endmacro reply_to %}
+
+{% macro mention_mastodon(user) %}
+    {% set user = user | trim_start_matches(pat="@") %}
+    {{types::link(url="https://transfem.social/@" ~ user, title="@" ~ user)}}
+{% endmacro mention_mastodon %}
+
+{% macro mention_bsky(user) %}
+    {% set user = user | trim_start_matches(pat="@") %}
+    {{types::link(url="https://bsky.app/profile/" ~ user, title="@" ~ user)}}
+{% endmacro mention_bsky %}
