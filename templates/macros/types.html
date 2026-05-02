@@ -81,7 +81,10 @@
             {% set rel = "author" %}
         {% endif %}
 
-        {% if inline %}<span{% else %}<address{%endif%} class="{{-cls::author()}} {{cls::profile()-}}" property="author" typeof="Person">
+        {% if inline %}<span{% else %}<address{%endif%}
+            class="{{-cls::author()}} {{cls::profile()-}}" property="author" typeof="Person"
+            {% if inline and not visible %}style="display:none;"{% endif %}
+        >
             <a 
                 href="{{ url | safe }}"
                 class="{{cls::url()}}"
