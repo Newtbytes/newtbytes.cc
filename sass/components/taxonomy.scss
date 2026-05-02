@@ -15,10 +15,13 @@
         }
 
         .count {
+            font-size: 85%;
         }
     }
 }
 
-:is(ul, ol).taxonomy-terms {
-    @include hlist;
+.taxonomy-terms {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
 }
