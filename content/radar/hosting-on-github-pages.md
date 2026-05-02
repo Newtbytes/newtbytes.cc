@@ -3,6 +3,7 @@ title = "Hosting on GitHub Pages now!"
 date = 2026-02-25
 
 [taxonomies]
+tags = ["Web Development"]
 project = ["newtbytes.cc"]
 +++
 

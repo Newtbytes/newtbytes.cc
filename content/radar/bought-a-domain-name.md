@@ -3,6 +3,7 @@ title = "Bought a domain name"
 date = 2026-02-22
 
 [taxonomies]
+tags = ["Web Development"]
 project = ["newtbytes.cc"]
 +++
 

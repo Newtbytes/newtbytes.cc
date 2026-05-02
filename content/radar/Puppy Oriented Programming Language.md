@@ -4,7 +4,7 @@ date = 2026-04-04
 authors = ["newtbytes"]
 
 [taxonomies]
-tags = ["Programming", "Programming Language Design", "Humor"]
+tags = ["Programming", "Programming Language Design", "Humor", "Transgender"]
 
 [extra]
 censored = true
