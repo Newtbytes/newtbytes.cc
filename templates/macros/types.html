@@ -128,3 +128,121 @@
         {% endif %}
     </ul>
 {% endmacro section_feeds %}
+
+{% macro toc(toc) %}
+    {# Require at least four headings for TOC to be generated #}
+    {% if 4 <= toc | length %}
+        <h3>Table of Contents</h3>
+        <ol>
+        {% for h1 in toc %}
+            <li>
+                <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+                {% if h1.children %}
+                    <ol>
+                        {% for h2 in h1.children %}
+                            <li>
+                                <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ol>
+        <img src="/img/div/happy-star.png" alt="">
+    {% endif %}
+{% endmacro toc %}
+
+{#
+    image_path: path to original image
+    image_width: width of original image
+    alts: alternate images resized with resize_image
+#}
+{% macro srcset(image_path, image_width, alts) %}
+    {% set image_url = get_url(path=image_path) %}
+    {% set alts = alts | sort(attribute='width')%}
+
+    {% set smallest_width = alts | first %}
+    {% set smallest_width = smallest_width.width %}
+
+    {% if image_width < smallest_width %}
+        {# TODO: if this happens, it's probably an error #}
+        {% set image_width = smallest_width %}
+    {% endif %}
+
+    {% for image in alts %}
+        {% set scale = image.width / smallest_width %}
+        {% if scale != 1 %}
+            {{image | get(key='url', default=image_url)}} {{scale | int}}x,
+        {% endif %}
+    {% endfor %}
+    {{image_url}} {{image_width / smallest_width | int}}x
+{% endmacro srcset %}
+
+{% macro image(path, alt="", class="") %}
+    {% set scales = [2,4,8] %}
+    {% set meta = get_image_metadata(path=path) %}
+    {% set images = [] %}
+
+    {% set largest_scale = scales | sort | last %}
+
+    {% if not meta.format in ["webp"] %}
+        {% for divisor in scales %}
+            {% set width = meta.width / divisor %}
+            {% set height = meta.height / divisor %}
+
+            {% if width * height > 8*8 %}
+                {% set width = width | int %}
+                {% set height = height | int %}
+
+                {% set image = resize_image(path=path, width=width, height=height) %}
+                {% set_global images = images | concat(with=image) %}
+                {% if divisor == largest_scale %}
+                    {% set_global smallest_img = image %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <img
+        {% if smallest_img is defined %}
+        src="{{smallest_img.url}}"
+        {% else %}
+        src="{{get_url(path=path)}}"
+        {% endif %}
+        width="{{meta.width}}"
+        height="{{meta.height}}"
+        {% if alt %}alt="{{alt}}"{% endif %}
+        {% if 0 < images | length %}
+        srcset="{{ types::srcset(image_path=path, image_width=meta.width, alts=images) }}"
+        {% endif %}
+        type="{{meta.mime}}"
+        {% if class %} class="{{ class }}" {% endif %}
+    >
+{% endmacro image %}
+
+{% macro picture(path, alt="", caption="", formats="", class="") %}
+    {% set meta = get_image_metadata(path=path) %}
+
+    {% if not formats %}
+        {% set formats = ["webp"] %}
+    {% endif %}
+
+    {% if caption %} <figure {% if class and caption %} class="{{class}}" {% endif %}> {% endif %}
+        {% if 0 < formats | length %} <picture {% if class and not caption %} class="{{class}}" {% endif %}> {% endif %}
+            {% for fmt in formats %}
+                {% if not path is ending_with("." ~ fmt) %}
+                    {% set img = resize_image(path=path, width=meta.width, height=meta.height, format=fmt) %}
+                    {# FIXME: technically type="image/{{fmt}}" is incorrect for some formats #}
+                    <source srcset="{{img.url}}" type="image/{{fmt}}">
+                {% endif %}
+            {% endfor %}
+
+            {{ types::image(path=path, alt=alt) }}
+        {% if 0 < formats | length %} </picture> {% endif %}
+
+        {% if caption%}
+            <figcaption>{{ caption | safe }}</figcaption>
+        {% endif %}
+    {% if caption %} </figure> {% endif %}
+{% endmacro picture %}
