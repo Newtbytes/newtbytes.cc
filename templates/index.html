@@ -17,6 +17,22 @@
     }}
 {% endblock meta %}
 
+{% block feeds %}
+    {% if config.generate_feeds %}
+        {{ super() }}
+    {% endif %}
+{% endblock feeds %}
+
+{% block rss %}
+    <link rel="alternate" type="application/rss+xml" title="RSS"
+        href="{{ get_url(path='rss.xml', trailing_slash=false) }}">
+{% endblock rss %}
+
+{% block atom %}
+    <link rel="alternate" type="application/atom+xml" title="Atom"
+        href="{{ get_url(path='atom.xml', trailing_slash=false) }}">
+{% endblock atom %}
+
 {% block webPageSchema %}
     typeof="ProfilePage"
 {% endblock webPageSchema %}

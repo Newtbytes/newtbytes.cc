@@ -20,15 +20,11 @@
     <meta name="robots" content="noai">
     <meta name="robots" content="noimageai">
 
-    {% block rss %}
-        <link rel="alternate" type="application/rss+xml" title="RSS"
-            href="{{ get_url(path='rss.xml', trailing_slash=false) }}">
-    {% endblock rss %}
+    {% block feeds %}
+        {% block rss %}{% endblock rss %}
 
-    {% block atom %}
-        <link rel="alternate" type="application/atom+xml" title="Atom"
-            href="{{ get_url(path='atom.xml', trailing_slash=false) }}">
-    {% endblock atom %}
+        {% block atom %}{% endblock atom %}
+    {% endblock feeds %}
 
     {% block favicon %}
         {% set favicon = resize_image(path="img/goober.png", width=48, height=48, format="webp") %}

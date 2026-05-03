@@ -4,6 +4,26 @@
     <link rel="stylesheet" type="text/css" href="/section-index.css">
 {% endblock style %}
 
+{% block feeds %}
+    {% if section.generate_feeds %}
+        {{ super() }}
+    {% endif %}
+{% endblock feeds %}
+
+{% block rss %}
+    {% if "rss.xml" in config.feed_filenames %}
+        <link rel="alternate" type="application/rss+xml" title="RSS"
+            href="{{ utils::url_join(a=section.permalink, b='rss.xml') }}">
+    {% endif %}
+{% endblock rss %}
+
+{% block atom %}
+    {% if "atom.xml" in config.feed_filenames %}
+        <link rel="alternate" type="application/atom+xml" title="Atom"
+            href="{{ utils::url_join(a=section.permalink, b='atom.xml') }}">
+    {% endif %}
+{% endblock atom %}
+
 {% block title %}
     {{ section.title }}
 {% endblock title %}
