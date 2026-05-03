@@ -1,6 +1,7 @@
 {% extends "article.html" %}
 
 {% import "macros/types.html" as types %}
+{% import "macros/utils.html" as utils %}
 
 {% block title %}{{ term.name | title }}{% endblock %}
 
@@ -9,22 +10,37 @@
 {% block body %}
     <div class="taxonomy-terms">
         {% for page in term.pages %}
+            {% set title = "" %}
+
+            {% if page.title %}
+                {% set title = page.title %}
+            {% elif not page.title and page.date %}
+                {% set title = page.date %}
+            {% endif %}
+
+            {% set desc = utils::page_description(page=page) | trim %}
+
             <div class="card">
-                <h2 class="title">
-                    <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
-                </h2>
-                <article class="content">
-                    {% if page.description %}
+                {% if title %}
+                    <h2 class="title">
+                        <a href="{{ page.permalink | safe }}">{{ title }}</a>
+                    </h2>
+                {% endif %}
+
+                {% if desc %}
+                    <article class="content">
                         <p class="description">
-                            {{ page.description }}
+                            {{ desc | safe }}
                         </p>
-                    {% endif %}
-                </article>
-                <div class="meta">
-                    {% if page.date %}
+                    </article>
+                    {{ types::continue_reading(link=page.permalink) }}
+                {% endif %}
+
+                {% if page.date %}
+                    <div class="meta">
                         {{types::dt(date=page.date, type="published", format="%B %d, %Y")}}
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

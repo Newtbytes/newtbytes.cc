@@ -128,3 +128,9 @@
         {% endif %}
     </ul>
 {% endmacro section_feeds %}
+
+{% macro continue_reading(link) %}
+    <a class="continue-reading-link" href="{{ link | safe }}#continue-reading">
+        Continue Reading...
+    </a>
+{% endmacro continue_reading %}

@@ -75,12 +75,10 @@
             {% endif %}
 
             {% if section.extra | get(key="inline_pages", default=true) %}
-                {% if page.summary %}
-                    <div class="{{-cls::summary()-}}" property="abstract">{{ page.summary | safe }}</div>
-                    <a class="continue-reading-link" href="{{ page.permalink | safe }}#continue-reading">
-                        Continue Reading...
-                    </a>
-                {% endif %}
+                <div class="{{-cls::summary()-}}" property="abstract">
+                    {{ utils::page_description(page=page) }}
+                </div>
+                {{types::continue_reading(link=page.permalink)}}
             {% else %}
                 <div class="{{-cls::content()-}}" property="articleBody">{{ page.content | safe }}</div>
             {% endif %}
