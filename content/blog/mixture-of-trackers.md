@@ -2,6 +2,9 @@
 title = "Mixture of Trackers (draft)"
 date = 2025-09-02
 draft = true
+
+[taxonomies]
+tags = ["VR", "Ideas"]
 +++
 
 ## Draft Progress

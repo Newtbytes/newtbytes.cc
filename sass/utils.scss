@@ -1,0 +1,11 @@
+@mixin nobr {
+    white-space: nowrap;
+}
+
+@mixin nobreak {
+    @include nobr;
+}
+
+@mixin maybreak {
+    white-space: normal;
+}

@@ -1,0 +1,17 @@
+{% extends "article.html" %}
+
+{% block title %}{{ taxonomy.name | title }}{% endblock %}
+
+{% block body %}
+    <ul class="taxonomies">
+        {% set terms = terms | sort(attribute="page_count") | reverse %}
+        {% for term in terms %}
+            <li>
+                <a href="{{ term.permalink | safe }}">
+                    <span class="name">{{ term.name }}</span>
+                </a>
+                <span class="count">({{ term.page_count }})</span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

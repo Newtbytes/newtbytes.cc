@@ -187,3 +187,17 @@
     {%- endfor %}
     {{- result -}}
 {% endmacro rand_str %}
+
+{% macro page_description(page) %}
+    {% if page.description %}
+        {% set desc = page.description %}
+    {% elif page.summary %}
+        {% set desc =  page.summary %}
+    {% else %}
+        {% set desc =  page.content | truncate(length=175) | striptags %}
+    {% endif %}
+
+    {%- if not desc is matching("<iframe") -%}
+        {{- desc | trim | safe -}}
+    {%- endif -%}
+{% endmacro page_description %}

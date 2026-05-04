@@ -1,0 +1,32 @@
+@import "../colors.scss";
+
+.card {
+    --background-col: var(--blue-readable-bg);
+
+    background: var(--background-col);
+
+    padding: 1em;
+
+    flex-grow: 1;
+
+    min-width: 30ch;
+    width: fit-content;
+    height: fit-content;
+
+    border-radius: 20px;
+
+    .title {
+        padding: 0;
+        margin: 0;
+        font-size: 1em;
+    }
+
+    .description {}
+
+    .content {}
+
+    .meta {
+        float: right;
+        text-align: right;
+    }
+}

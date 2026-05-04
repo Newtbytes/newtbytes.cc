@@ -1,0 +1,27 @@
+@import "../utils.scss";
+@import "../types/list.scss";
+
+:is(ul, ol).taxonomies {
+    @include hlist;
+
+    text-align: center;
+    text-wrap: wrap balance;
+
+    li {
+        @include nobreak;
+
+        .name {
+            @include maybreak;
+        }
+
+        .count {
+            font-size: 85%;
+        }
+    }
+}
+
+.taxonomy-terms {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+}

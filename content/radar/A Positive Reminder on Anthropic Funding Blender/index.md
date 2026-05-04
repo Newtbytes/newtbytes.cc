@@ -3,6 +3,9 @@ title = "A Positive Reminder on Anthropic Funding Blender"
 date = 2026-04-29
 updated = 2026-05-01
 authors = ["newtbytes"]
+
+[taxonomies]
+tags = ["Open Source", "Discourse"]
 +++
 
 TLDR; Open source is still awesome and winning :3

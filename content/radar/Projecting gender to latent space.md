@@ -3,6 +3,9 @@ title = "Projecting gender to latent space"
 date = 2026-04-19
 authors = ["newtbytes"]
 
+[taxonomies]
+tags = ["Machine Learning", "Humor", "Gender", "LGBTQIA"]
+
 [extra]
 censored = true
 +++

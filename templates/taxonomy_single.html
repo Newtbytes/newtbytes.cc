@@ -1,0 +1,49 @@
+{% extends "article.html" %}
+
+{% import "macros/types.html" as types %}
+{% import "macros/utils.html" as utils %}
+
+{% block title %}{{ term.name | title }}{% endblock %}
+
+{% block desc %}Posts tagged "{{ term.name }}"{% endblock %}
+
+{% block body %}
+    <div class="taxonomy-terms">
+        {% for page in term.pages %}
+            {% set title = "" %}
+
+            {% if page.title %}
+                {% set title = page.title %}
+            {% elif not page.title and page.date %}
+                {% set title = page.date %}
+            {% endif %}
+
+            {% set desc = utils::page_description(page=page) | trim %}
+
+            <div class="card">
+                {% if title %}
+                    <h2 class="title">
+                        <a href="{{ page.permalink | safe }}">{{ title }}</a>
+                    </h2>
+                {% endif %}
+
+                {% if desc %}
+                    <article class="content">
+                        <p class="description">
+                            {{ desc | safe }}
+                        </p>
+                    </article>
+                    {{ types::continue_reading(link=page.permalink) }}
+                {% endif %}
+
+                {% if page.date %}
+                    <div class="meta">
+                        {{types::dt(date=page.date, type="published", format="%B %d, %Y")}}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="{{ get_url(path='tags') }}">View all tags</a>
+{% endblock %}
