@@ -33,6 +33,7 @@ Here's a very short and overly vague list of my interests:
 - Wikipedia: <a rel="me" href="https://en.wikipedia.org/wiki/User:newtbytes">User:Newtbytes</a>
 - Discord: newtbytes
 - Github: <a rel="me" href="https://github.com/newtbytes">newtbytes</a>
+- Codeberg: <a rel="me" href="https://codeberg.org/newtbytes">newtbytes</a> (slowly transitioning away from Github)
 - Neocities: <a rel="me" href="https://neocities.org/site/newtbytes">neocities.org/site/newtbytes</a>
 - toyhouse: <a rel="me" href="https://toyhou.se/newtbytes">toyhou.se/newtbytes</a>
 - transfem.social: <a rel="me" href="https://transfem.social/@newtbytes">@newtbytes@transfem.social</a>
