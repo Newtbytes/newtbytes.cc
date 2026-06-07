@@ -118,8 +118,10 @@
     {% block scripts %}
         <script type="text/javascript" src="/js/cursor.js"></script>
 
-        <script data-goatcounter="https://newtbytes.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
+        {% if get_env(name="DEPLOY_TGT", default="newtbytes.cc") == "newtbytes.cc" %}
+            <script data-goatcounter="https://newtbytes.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
+        {% endif %}
     {% endblock scripts %}
 
     {% if get_env(name="DEPLOY_TGT", default="newtbytes.cc") == "neocities" %}
