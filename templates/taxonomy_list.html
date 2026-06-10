@@ -2,6 +2,8 @@
 
 {% block title %}{{ taxonomy.name | title }}{% endblock %}
 
+{% block desc %}Here you can find all the post tags used on my website.{% endblock desc %}
+
 {% block body %}
     <ul class="taxonomies">
         {% set terms = terms | sort(attribute="page_count") | reverse %}
