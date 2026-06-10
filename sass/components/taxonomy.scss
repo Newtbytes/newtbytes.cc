@@ -2,7 +2,7 @@
 @import "../types/list.scss";
 
 :is(ul, ol).taxonomies {
-    @include hlist;
+    @include hlist("");
 
     text-align: center;
     text-wrap: wrap balance;
@@ -10,9 +10,9 @@
     li {
         @include nobreak;
 
-        .name {
-            @include maybreak;
-        }
+        margin: 0.1em;
+
+        .name {}
 
         .count {
             font-size: 85%;

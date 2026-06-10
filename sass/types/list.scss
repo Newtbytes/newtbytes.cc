@@ -1,6 +1,6 @@
 @import "../utils.scss";
 
-@mixin hlist {
+@mixin hlist($sep: " • ") {
     margin: 0;
     padding: 0;
 
@@ -13,6 +13,6 @@
     // TODO: implement javascript script that ensures that a line does not start with a bullet point
     // bullet points should only be between two list items that aren't split by a browser-inserted linebreak
     li:not(:first-child)::before {
-        content: " • "
+        content: $sep
     }
 }
