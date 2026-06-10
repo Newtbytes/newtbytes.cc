@@ -2,7 +2,13 @@
 
 {% block title %}{{ taxonomy.name | title }}{% endblock %}
 
-{% block desc %}Here you can find all the post tags used on my website.{% endblock desc %}
+{% block desc %}
+    {%- if taxonomy.name == "tags" -%}
+        Here you can find all the post tags used on my website.
+    {%- else -%}
+        Every term in the '{{taxonomy.name}}' taxonomy
+    {%- endif -%}
+{% endblock desc %}
 
 {% block body %}
     <ul class="taxonomies">
