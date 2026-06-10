@@ -9,21 +9,26 @@
 
     flex-grow: 1;
 
-    min-width: 30ch;
     width: fit-content;
     height: fit-content;
 
-    border-radius: 20px;
+    border: 6px ridge;
 
     .title {
+        height: 1lh;
+        max-height: 2lh;
+
         padding: 0;
         margin: 0;
         font-size: 1em;
     }
 
-    .description {}
+    .content {
+        width: min-content;
+        min-width: 30ch;
+    }
 
-    .content {}
+    .description {}
 
     .meta {
         float: right;
