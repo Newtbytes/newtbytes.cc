@@ -4,9 +4,9 @@
 {% macro profile(first="", last="", username="", gender="", pronouns="", email="", url="", pfp="", bday="", schema="") %}
     <div class="{{-cls::profile()-}}" {{ schema | safe }} typeof="Person">
         {% if first and last %}
-            <meta class="{{-cls::name()-}}" property="givenName name" content="{{ first }} {{ last }}"/>
+            <meta class="{{-cls::name()-}}" property="name" content="{{ first }} {{ last }}"/>
         {% endif %}
-        {% if first %} <meta class="{{-cls::given_name()-}}" content="{{ first }}"/> {% endif %}
+        {% if first %} <meta class="{{-cls::given_name()-}}" property="givenName" content="{{ first }}"/> {% endif %}
         {% if last %} <meta class="{{-cls::family_name()-}}" property="familyName" content="{{ last }}"/> {% endif %}
         {% if username %} <meta class="{{-cls::nickname()-}}" content="{{ username }}"/> {% endif %}
         {% if gender %} <meta class="p-gender-identity" property="gender" content="{{ gender }}"/> {% endif %}
