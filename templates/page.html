@@ -22,11 +22,15 @@
             <span property="itemListElement" typeof="ListItem">
                 <a href="{{ section.permalink | safe }}" property="item" typeof="WebPage">
                     <span property="name">
-                        {%- if "button" in section.extra %}
+                        {%- if "button" in section.extra -%}
                             {{- section.extra["button"] -}}
-                        {% else %}
+                        {%- elif section.title -%}
                             {{- section.title -}}
-                        {% endif -%}
+                        {%- elif not section.components and not section.title -%}
+                            home
+                        {%- else -%}
+                            {{ throw(message="failed to create breadcrumb trail") }}
+                        {%- endif -%}
                     </span>
                 </a>
                 <meta property="position" content="{{ loop.index }}">
