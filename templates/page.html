@@ -10,6 +10,18 @@
     itemtype="https://schema.org/BlogPosting"
 {% endblock schema %}
 
+{% block meta %}
+    {{ meta::metadata(
+        url=page.permalink,
+        author=page.authors | join(sep=", "),
+        title=page | get(key="title", default=""),
+        desc=page | get(key="description", default=(page | get(key="summary", default=""))),
+        date=page | get(key="date", default=""),
+        updated=page | get(key="updated", default=""),
+        article=true
+    ) }}
+{% endblock meta %}
+
 {% block content %}
     {% set home = get_section(path="_index.md") %}
     {% set position = 1%}
