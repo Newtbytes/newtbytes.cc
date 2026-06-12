@@ -10,10 +10,10 @@
     {% endif %}
 
     {% if title %}
-        <meta name="twitter:title" content="{{ title }}">
+        <meta name="twitter:title" content="{{ title | safe }}">
     {% endif %}
 
     {% if desc %}
-        <meta name="twitter:description" content="{{ desc | striptags }}">
+        <meta name="twitter:description" content="{{ desc | striptags | safe }}">
     {% endif %}
 {% endmacro metadata %}

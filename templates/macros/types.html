@@ -173,10 +173,10 @@
     {% for image in alts %}
         {% set scale = image.width / smallest_width %}
         {% if scale != 1 %}
-            {{image | get(key='url', default=image_url)}} {{scale | int}}x,
+            {{image | get(key='url', default=image_url) | safe}} {{scale | int}}x,
         {% endif %}
     {% endfor %}
-    {{image_url}} {{image_width / smallest_width | int}}x
+    {{image_url | safe}} {{image_width / smallest_width | int}}x
 {% endmacro srcset %}
 
 {% macro image(path, alt="", class="") %}
@@ -206,17 +206,17 @@
 
     <img
         {% if smallest_img is defined %}
-        src="{{smallest_img.url}}"
+        src="{{smallest_img.url | safe}}"
         {% else %}
         src="{{get_url(path=path)}}"
         {% endif %}
         width="{{meta.width}}"
         height="{{meta.height}}"
-        {% if alt %}alt="{{alt}}"{% endif %}
+        {% if alt %}alt="{{alt | safe}}"{% endif %}
         {% if 0 < images | length %}
         srcset="{{ types::srcset(image_path=path, image_width=meta.width, alts=images) }}"
         {% endif %}
-        type="{{meta.mime}}"
+        type="{{meta.mime | safe}}"
         {% if class %} class="{{ class }}" {% endif %}
     >
 {% endmacro image %}
@@ -234,7 +234,7 @@
                 {% if not path is ending_with("." ~ fmt) %}
                     {% set img = resize_image(path=path, width=meta.width, height=meta.height, format=fmt) %}
                     {# FIXME: technically type="image/{{fmt}}" is incorrect for some formats #}
-                    <source srcset="{{img.url}}" type="image/{{fmt}}">
+                    <source srcset="{{img.url | safe}}" type="image/{{fmt}}">
                 {% endif %}
             {% endfor %}
 

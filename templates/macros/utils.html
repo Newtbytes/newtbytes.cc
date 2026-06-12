@@ -1,8 +1,8 @@
 {%- macro page_title(title="") -%}
     {%- if title and title != "{{ config.title }}" -%}
-        {{ config.title }} | {{ title }}
+        {{ config.title | safe }} | {{ title | safe }}
     {%- else -%}
-        {{ config.title }}
+        {{ config.title | safe }}
     {%- endif -%}
 {%- endmacro page_title -%}
 
@@ -59,7 +59,7 @@
         {%- set joined = joined ~ "/" %}
     {%- endif %}
 
-    {{- joined | trim -}}
+    {{- joined | trim | safe -}}
 {% endmacro %}
 
 {% macro rand_str(length) %}

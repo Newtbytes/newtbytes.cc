@@ -98,7 +98,7 @@
     {% endblock meta %}
     
     <meta name="keywords"
-        content="{{ config.title }}, Ness Shannon, newbytes, personal website, blog, machine learning, game development, creative writing, compiler, programming, web development, nerdy interests, WIP, under construction">
+        content="{{ config.title | safe }}, Ness Shannon, newbytes, personal website, blog, machine learning, game development, creative writing, compiler, programming, web development, nerdy interests, WIP, under construction">
 
     {% block og_type %}
     {{ og::type(value="website") }}

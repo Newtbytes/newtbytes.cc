@@ -3,21 +3,21 @@
     <meta property="og:image" content="{{ get_url(path=path) }}">
     <meta property="og:image:width" content="{{ meta.width }}">
     <meta property="og:image:height" content="{{ meta.height }}">
-    <meta property="og:image:alt" content="{{ alt }}">
+    <meta property="og:image:alt" content="{{ alt | safe }}">
 {% endmacro image %}
 
 
 {% macro website(url, title="", desc="") %}
     <meta property="og:url" content="{{ url | safe }}">
     <meta property="og:site_name" content="{{ config.title | safe }}">
-    {% if title %}<meta property="og:title" content="{{ title }}">{% endif%}
-    {% if desc %}<meta property="og:description" content="{{ desc | striptags }}">{% endif%}
+    {% if title %}<meta property="og:title" content="{{ title | safe }}">{% endif%}
+    {% if desc %}<meta property="og:description" content="{{ desc | striptags | safe }}">{% endif%}
 {% endmacro website %}
 
 
 {% macro article(url, title="", author="", desc="", date="", updated="") %}
     {% if author %}<meta property="og:article:author" content="{{ author }}">{% endif %}
-    {% if desc %}<meta property="og:article:description" content="{{ desc | striptags }}">{% endif %}
+    {% if desc %}<meta property="og:article:description" content="{{ desc | striptags | safe }}">{% endif %}
     {% if date %}
         <meta property="og:article:published_time" content="{{ date | date(format='%Y-%m-%dT%H:%M:%SZ') }}">
     {% endif %}
