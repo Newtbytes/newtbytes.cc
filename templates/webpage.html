@@ -34,75 +34,19 @@
 
     {% block meta %}
         {% if current_url is defined %}
-            {% set meta_url = current_url %}
-        {% else %}
-            {% set meta_url = "" %}
+            {{ meta::metadata(
+                url=current_url,
+            ) }}
         {% endif %}
-        {% set meta_author = config.author %}
-        {% set meta_title = utils::page_title() %}
-        {% set meta_image = "img/logo.png" %}
-        {% set meta_image_alt = config.title ~ " logo" %}
-        {% set meta_desc = config.description %}
+    {% endblock meta %}
 
-        {% if page is defined %}
-            {% set meta_url = page.permalink | safe %}
-            {% set meta_title = utils::page_title(title=page.title) %}
-
-            {% if page.authors %}
-                {% set meta_author = page.authors | join(sep=", ") %}
-            {% endif %}
-
-            {% if page.description %}
-                {% set meta_desc = page.description %}
-            {% elif page.summary %}
-                {% set meta_desc = page.summary %}
-            {% endif %}
-        {% endif %}
-
-        {% if section is defined %}
-            {% set meta_title = utils::page_title(title=section.title) %}
-            {% set meta_desc = section.description %}
-        {% endif %}
-
-        {{ meta::metadata(
-        canon_url=meta_url,
-        author=meta_author,
-        title=meta_title,
-        desc=meta_desc
-        ) }}
-
-        {{ twitter::metadata(
-        url=meta_url,
-        img=get_url(path=meta_image),
-        title=meta_title,
-        desc=meta_desc
-        ) }}
-
-        {{ og::website(
-        url=meta_url,
-        title=meta_title,
-        desc=meta_desc
-        ) }}
-
-        {{ og::image(
-        path=meta_image,
-        alt=meta_image_alt
-        ) }}
-
-        {% if meta_author == "newtbytes" and not utils::censored() %}
-            <meta name="fediverse:creator" content="newtbytes@transfem.social" />
-        {% endif %}
-
+    {% block webmention %}
         <link rel="webmention" href="https://webmention.io/{{config.extra.domain}}/webmention" />
         <link rel="pingback" href="https://webmention.io/{{config.extra.domain}}/xmlrpc" />
-    {% endblock meta %}
+    {% endblock webmention %}
     
     <meta name="keywords"
         content="{{ config.title }}, Ness Shannon, newbytes, personal website, blog, machine learning, game development, creative writing, compiler, programming, web development, nerdy interests, WIP, under construction">
-
-    {% block og_type %}
-    {{ og::type(value="website") }}
-    {% endblock og_type %}
 
     {% block style %}
         <link rel="preconnect" href="https://fonts.googleapis.com">

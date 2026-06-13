@@ -1,10 +1,59 @@
 {% import "macros/utils.html" as utils %}
+{% import "macros/twitter.html" as twt %}
+{% import "macros/opengraph.html" as og %}
+{% import "macros/fedi.html" as fedi %}
 
-{% macro metadata(canon_url, author, title, desc="") %}
-    <link rel="canonical" href="{{ canon_url | safe }}">
+
+{% macro metadata(url, author="", title="", desc="", image_path="", image_alt="", date="", updated="", article=false) %}
+    {% if not author %} {% set author = config.author %} {% endif %}
+    {% if not title %} {% set title = utils::page_title() %} {% endif %}
+    {% if not desc %} {% set desc = config.description %} {% endif %}
+    {% if not image_path %} {% set image_path = "img/logo.png" %} {% endif %}
+    {% if not image_alt and image_path == "img/logo.png" %}
+        {% set image_alt = config.title ~ " logo" %}
+    {% endif %}
+
+    <link rel="canonical" href="{{ url | safe }}">
     <meta name="author" content="{{ author }}">
     <title>{{ title }}</title>
     {% if desc %}
         <meta name="description" content="{{ desc | striptags }}">
+    {% endif %}
+
+    {% if author == "newtbytes" and not utils::censored() %}
+        <meta name="fediverse:creator" content="newtbytes@transfem.social" />
+    {% endif %}
+
+    {{ twitter::metadata(
+        url=url,
+        img=get_url(path=image_path),
+        title=title,
+        desc=desc
+    ) }}
+
+    {{ og::type(value="website") }}
+    {{ og::website(
+        url=url,
+        title=title,
+        desc=desc
+    ) }}
+
+    {% if article %}
+        {{ og::type(value="article") }}
+        {{ og::article(
+            url=url,
+            title=title,
+            author=author,
+            desc=desc,
+            date=date,
+            updated=updated
+        ) }}
+    {% endif %}
+
+    {% if image_path or image_alt %}
+        {{ og::image(
+            path=image_path,
+            alt=image_alt
+        ) }}
     {% endif %}
 {% endmacro metadata %}

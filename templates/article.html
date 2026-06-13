@@ -4,29 +4,13 @@
 {% extends "webpage.html" %}
 
 {% block meta %}
-    {{ super() }}
-
-    {% set meta_date = "" %}
-    {% set meta_updated = "" %}
-
-    {% if page is defined %}
-    {% set meta_date = page | get(key="date", default="") %}
-    {% set meta_updated = page | get(key="updated", default="") %}
+    {% if current_url is defined %}
+        {{ meta::metadata(
+            url=current_url,
+            article=true
+        ) }}
     {% endif %}
-
-    {{ og::article(
-    url=meta_url,
-    title=meta_title,
-    author=meta_author,
-    desc=meta_desc,
-    date=meta_date,
-    updated=meta_updated
-    ) }}
 {% endblock meta %}
-
-{% block og_type %}
-    {{ og::type(value="article") }}
-{% endblock og_type %}
 
 {% block content %}
     <article
@@ -41,8 +25,6 @@
                 {% block href %}
                     {% if current_url is defined %}
                         href="{{current_url | safe}}"
-                    {% elif meta_url is defined %}
-                        href="{{meta_url | safe}}"
                     {% endif %}
                 {% endblock href %}
                 property="url"
@@ -70,11 +52,7 @@
         {% block notes %} {% endblock notes %}
 
         <p class="{{-cls::summary()-}}" property="abstract">
-            {% block desc %}
-                {% if meta_desc is defined %}
-                    {{ meta_desc }}
-                {% endif %}
-            {% endblock desc %}
+            {% block desc %} {% endblock desc %}
         </p>
 
         {% block toc %}
