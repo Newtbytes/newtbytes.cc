@@ -23,7 +23,7 @@ jobs:
 
   #   steps:
   #     - name: checkout
-  #       uses: actions/checkout@v6.0.3
+  #       uses: actions/checkout@v7.0.0
 
   #     - name: Install zola
   #       uses: taiki-e/install-action@v2
@@ -39,7 +39,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
 
       - name: Build Zola + upload Pages artifact
         uses: getzola/github-pages@435a833fd3f1edcb28d70576c89e30a6365cd8f7
@@ -53,7 +53,7 @@ jobs:
 
     steps:
       - name: checkout
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
 
       - name: Install zola
         uses: taiki-e/install-action@v2
