@@ -9,7 +9,7 @@ template = "index.html"
 
 ## Welcome to my lil place on the internet
 
-I'm Ness Shannon, aka Newt, aka newbytes! I'm into all things cool and weird on the web ;).  
+I'm Ness Shannon, aka Newt, aka newtbytes! I'm into all things cool and weird on the web ;).  
 I'm (kinda) nerdy.
 
 {{divider(name="happy-star")}}
