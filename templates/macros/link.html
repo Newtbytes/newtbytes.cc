@@ -1,0 +1,16 @@
+{% macro link_person(url, text="", rel=[], class=[], invisible=false) %}
+{%- if not text %}
+{% set text = url %}
+{% endif -%}
+{% if rel %}
+{% set rel = rel | join(sep=" ") %}
+{% endif %}
+{% if class %}
+{% set class = class | join(sep=" ") %}
+{% endif %}
+<a href="{{ url }}" {% if class %} class="{{ class }}" {% endif %} {% if rel %} rel="{{ rel }}" {% endif %}>
+    {%- if not invisible -%}
+    {{ text }}
+    {%- endif -%}
+</a>
+{% endmacro link_person %}
