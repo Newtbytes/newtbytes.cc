@@ -60,7 +60,7 @@ For now, just know that somewhere, a nerdy {{ censor(orig="girly", repl="guy") }
 
 <div style="float:right;padding:1em;">
 
-![](img/memes/https___github.com_Kautenja_gym-super-mario-bros_blob_master_gym_super_mario_bros__roms_super-mario-bros.nes.jpg)</div>
+![A goofy Mario-themed meme image that only Newt understands. It's a bit hard to describe in this alt text, but bear with me. Weirdly edited text saying, "Friendship ended with 'Vimm's Lair' now [a long very specific GitHub link to a ROM of the original Super Mario Bros for NES] is my best friend." On the left, there's a low resolution screenshot of a GitHub repo checked with a green checkmark, and on the right the Vimm's Layer logo is crossed with a big red X. A weird   correctly colored but spriteless version of the game is in between these two images.](img/memes/https___github.com_Kautenja_gym-super-mario-bros_blob_master_gym_super_mario_bros__roms_super-mario-bros.nes.jpg)</div>
 
 look at this silliness only i understand
 
