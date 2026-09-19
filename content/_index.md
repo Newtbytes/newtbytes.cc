@@ -9,8 +9,19 @@ template = "index.html"
 
 ## Welcome to my lil place on the internet
 
-I'm Ness Shannon, aka Newt, aka newtbytes! I'm into all things cool and weird on the web ;).  
-I'm (kinda) nerdy.
+<div style="float: right;">
+  <img src="/img/pfp.png" alt="art of newtbyte's fursona, Ness" style="width: 256px;">
+  <p style="text-align: center;">
+    Ness Shannon
+    {% censor() %}
+    <small>(she/her)</small>
+    {% end %}
+  </p>
+</div>
+
+I'm Ness Shannon, aka Newt, aka newtbytes! I'm a {{ censor(orig="[trans](/transgender) girl") }} programmer, and I'm into all things cool and weird on the web ;).
+
+I'm juuuust a lil nerdy. x3
 
 {{divider(name="happy-star")}}
 
