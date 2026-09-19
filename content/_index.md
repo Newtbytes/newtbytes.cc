@@ -30,6 +30,8 @@ Here's a very short and overly vague list of my interests:
 {% censor() %}
 ## Links & Socials
 
+- Twitch: <a rel="me" href="https://twitch.tv/newtbytes">newtbytes</a>
+- YouTube (VODs): <a rel="me" href="https://www.youtube.com/@newtbytesvods">newtbytes VODs</a>
 - Wikipedia: <a rel="me" href="https://en.wikipedia.org/wiki/User:newtbytes">User:Newtbytes</a>
 - Discord: newtbytes
 - Github: <a rel="me" href="https://github.com/newtbytes">newtbytes</a>
