@@ -1,0 +1,10 @@
+[package]
+name = "website"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+grass = "0.13.4"
+pulldown-cmark = "0.13.4"
+quick-xml = "0.42.0"
+walkdir = "2.5.0"
