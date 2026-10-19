@@ -1,9 +1,3 @@
-{% import "macros/meta.html" as meta %}
-{% import "macros/opengraph.html" as og %}
-{% import "macros/twitter.html" as twitter %}
-{% import "macros/utils.html" as utils %}
-{% import "macros/types.html" as types %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,14 +33,14 @@
             {% set meta_url = "" %}
         {% endif %}
         {% set meta_author = config.author %}
-        {% set meta_title = utils::page_title() %}
+        {% set meta_title = <utils.page_title /> %}
         {% set meta_image = "img/logo.png" %}
         {% set meta_image_alt = config.title ~ " logo" %}
         {% set meta_desc = config.description %}
 
         {% if page is defined %}
             {% set meta_url = page.permalink | safe %}
-            {% set meta_title = utils::page_title(title=page.title) %}
+            {% set meta_title = <utils.page_title title={page.title} /> %}
 
             {% if page.authors %}
                 {% set meta_author = page.authors | join(sep=", ") %}
@@ -60,36 +54,36 @@
         {% endif %}
 
         {% if section is defined %}
-            {% set meta_title = utils::page_title(title=section.title) %}
+            {% set meta_title = <utils.page_title title={section.title} /> %}
             {% set meta_desc = section.description %}
         {% endif %}
 
-        {{ meta::metadata(
-        canon_url=meta_url,
-        author=meta_author,
-        title=meta_title,
-        desc=meta_desc
-        ) }}
+        {{ <meta.metadata
+        canon_url={meta_url}
+        author={meta_author}
+        title={meta_title}
+        desc={meta_desc}
+        /> }}
 
-        {{ twitter::metadata(
-        url=meta_url,
-        img=get_url(path=meta_image),
-        title=meta_title,
-        desc=meta_desc
-        ) }}
+        {{ <twitter.metadata
+        url={meta_url}
+        img={get_url(path=meta_image)}
+        title={meta_title}
+        desc={meta_desc}
+        /> }}
 
-        {{ og::website(
-        url=meta_url,
-        title=meta_title,
-        desc=meta_desc
-        ) }}
+        {{ <og.website
+        url={meta_url}
+        title={meta_title}
+        desc={meta_desc}
+        /> }}
 
-        {{ og::image(
-        path=meta_image,
-        alt=meta_image_alt
-        ) }}
+        {{ <og.image
+        path={meta_image}
+        alt={meta_image_alt}
+        /> }}
 
-        {% if meta_author == "newtbytes" and not utils::censored() %}
+        {% if meta_author == "newtbytes" and not <utils.censored /> %}
             <meta name="fediverse:creator" content="newtbytes@transfem.social" />
         {% endif %}
 
@@ -101,7 +95,7 @@
         content="{{ config.title | safe }}, Ness Shannon, newtbytes, personal website, blog, machine learning, game development, creative writing, compiler, programming, web development, nerdy interests, WIP, under construction">
 
     {% block og_type %}
-    {{ og::type(value="website") }}
+    {{ <og.type value="website" /> }}
     {% endblock og_type %}
 
     {% block style %}
@@ -146,7 +140,7 @@
     <div class="wrapper">
         <header>
             <div class="title">
-                {{types::picture(path="img/logo.png", alt="'Newt's Bunker' in 3D purple text on a wavey blue background")}}
+                {{ <types.picture path="img/logo.png" alt="'Newt's Bunker' in 3D purple text on a wavey blue background" /> }}
             </div>
             <div class="marquee marquee-blinkies">
                 <!-- goobers -->
@@ -236,14 +230,14 @@
                         <script type="text/javascript" src="https://furryring.neocities.org/onionring-variables.js"></script>
                         <script type="text/javascript" src="https://furryring.neocities.org/onionring-widget.js"></script>
                     </div>
-                    {% if utils::censored() == 'false' %}
+                    {% if <utils.censored /> == "false" %}
                         <div id="transring" class="menuitem webring">
                             <script src="https://transring.neocities.org/ring.js"></script>
                         </div>
                     {% endif %}
                 </div>
 
-                {% if utils::censored() == 'false' %}
+                {% if <utils.censored /> == "false" %}
                     <div class="chatbox">
                         <iframe src="https://www3.cbox.ws/box/?boxid=3554028&boxtag=6sFI3N" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
                     </div>
@@ -264,16 +258,16 @@
                 <img src="/img/button/wii.png">
                 <img src="/img/button/wikiasucks.png">
                 <img src="/img/button/anythingbut.gif">
-                {% if utils::censored() == 'false' %}
+                {% if <utils.censored /> == "false" %}
                 <img src="/img/button/buttonQueer.png">
                 {% endif %}
                 <img src="/img/button/linuxhere.gif">
                 <img src="/img/button/pbsource.png">
-                {% if utils::censored() == 'false' %}
+                {% if <utils.censored /> == "false" %}
                 <img src="/img/button/ab-trn.png">
                 {% endif %}
                 <img src="/img/button/button199.gif">
-                {% if utils::censored() == 'false' %}
+                {% if <utils.censored /> == "false" %}
                 <img src="/img/button/button253.gif">
                 {% endif %}
                 <img src="/img/button/imagine.gif">

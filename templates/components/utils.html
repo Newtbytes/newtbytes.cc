@@ -1,32 +1,32 @@
-{%- macro page_title(title="") -%}
+{%- component utils.page_title(title=none, @config) -%}
     {%- if title and title != "{{ config.title }}" -%}
         {{ config.title | safe }} | {{ title | safe }}
     {%- else -%}
         {{ config.title | safe }}
     {%- endif -%}
-{%- endmacro page_title -%}
+{%- endcomponent utils.page_title -%}
 
-{% macro censored() %}
-    {{- get_env(name="CENSORED", default='false') -}}
-{% endmacro censored %}
+{% component utils.censored() %}
+    {{- get_env(name="CENSORED", default="false") -}}
+{% endcomponent utils.censored %}
 
-{% macro ness_gender() %}
-    {%- if utils::censored() == 'true' -%}
+{% component utils.ness_gender() %}
+    {%- if <utils.censored /> == "true" -%}
         {{- "male" -}}
     {%- else %}
         {{- "female" -}}
     {%- endif -%}
-{% endmacro ness_gender %}
+{% endcomponent utils.ness_gender %}
 
-{% macro level_to_header(level) %}
+{% component utils.level_to_header(level) %}
     {%- if 1 <= level and level <= 6 -%}
         h{{level}}
     {%- else -%}
         {{ throw(message="Invalid level for level_to_header: level=" ~ level) }}
     {%- endif -%}
-{% endmacro level_to_header %}
+{% endcomponent utils.level_to_header %}
 
-{% macro url_join(a, b) %}
+{% component utils.url_join(a, b) %}
     {%- if a is string %}
         {%- set components_a = a | split(pat="/") %}
     {%- elif a is iterable  %}
@@ -39,33 +39,19 @@
         {%- set components_b = b %}
     {%- endif %}
 
-    {%- set components = components_a | concat(with=components_b) %}
+    {%- set joined = [c for c in [...components_a, ...components_b] if c] | join(sep="/") %}
 
-    {%- set joined = [] %}
-
-    {%- for component in components %}
-        {%- if component %}
-            {%- set_global joined = joined | concat(with=component) %}
-        {%- endif %}
-    {%- endfor %}
-
-    {%- set joined = joined | join(sep="/") %}
-
-    {%- if a is starting_with("/") %}
+    {%- if a is starting_with(pat="/") %}
         {%- set joined = "/" ~ joined %}
     {%- endif %}
 
-    {%- if b is ending_with("/") %}
+    {%- if b is ending_with(pat="/") %}
         {%- set joined = joined ~ "/" %}
     {%- endif %}
 
     {{- joined | trim | safe -}}
-{% endmacro %}
+{% endcomponent utils.url_join %}
 
-{% macro rand_str(length) %}
-    {%- set result = "" %}
-    {%- for i in range(end=length) %}
-        {%- set_global result = result ~ get_random(end=64) %}
-    {%- endfor %}
-    {{- result -}}
-{% endmacro rand_str %}
+{% component utils.rand_str(length) %}
+    {{- [get_random(start=0, end=64) for i in range(end=length)] | join(sep="") -}}
+{% endcomponent utils.rand_str %}

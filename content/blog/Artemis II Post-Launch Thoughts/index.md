@@ -9,21 +9,21 @@ Artemis II launched today (April 1st), a couple hours ago at the time of writing
 
 <!-- more -->
 
-{% censor() %}
+{% <censor> %}
 <!-- me: "T-010:00!!" -->
-{{ note(id="akk6ifiniebd0010") }}
-{% end %}
+{{ <note id="akk6ifiniebd0010" /> }}
+{% </censor> %}
 
 NASA again reminds me that they *do*, in fact, play Kerbal Space Program better than I do. Not even pre-launch, but pre-*countdown* there was a whole slew of system checks reminding me that rockets are quite literally rocket science and there is an incomprehensible level of detail in every aspect of this mission I have yet to even fathom of. Which is...pretty awesome I'm ngl.
 
-{% censor() %}
+{% <censor> %}
 <!-- me: "SPACE AAHH SPACE ARTEMIS II AHHH
 I am perhaps the physical manifestation of the space core from Portal 2 right now #artemis" -->
-{{ note(id="akk7elntvkp2001s") }}
+{{ <note id="akk7elntvkp2001s" /> }}
 
 <!-- Pictures of Earth taken by Artemis II -->
-{{ note(id="akmrabi5n7gx001j") }}
-{% end %}
+{{ <note id="akmrabi5n7gx001j" /> }}
+{% </censor> %}
 
 <!-- ret: 'One of my highlights from the Artemis II launch yesterday was on Sky News when the reporter interviewed a guy after the launch. 
 
@@ -40,25 +40,25 @@ As a young tiny little baby child, I possessed my very own copy of the Steam cli
 > This video game, Kerbal Space Program, is an object of extraordinary intrigue to my mind. I shall procure myself a copy and unknowingly bestow upon myself an intuitive grasp of basic orbital mechanics.
 > -Young tiny baby ness
 
-{% censor() %}
+{% <censor> %}
 <!-- me: ":Blobhaj_Rocket_Hug: many have suggested the parallels between #artemisii and kerbal space program, but many fail to notice the strong similarities to the mobile video game Bad Piggies" -->
-{{ note(id="akk82qi8ozw70008") }}
-{% end %}
+{{ <note id="akk82qi8ozw70008" /> }}
+{% </censor> %}
 
 ## The Toilet Saga
 
-The Orion spacecraft is probably the farthest humanity has sent a proper toilet to space, given that the Apollo missions didn't really have a *toilet* (they had plastic bags). Orion has an actual, honest to god, *toilet*, and quite the advanced toilet at that. The "Universal Waste Management System," commonly known as 'toilet,' is basically a little private room with a hatch/seat for solid waste, and a hose for liquid waste. The solid waste is stored and will be brought back to Earth, but the liquid waste is supposed to be... ejected into space. Lmao. Also, the toilet is so loud during operation that you need to wear hearing protection when using it lol{{ref(key="miller2026")}}
+The Orion spacecraft is probably the farthest humanity has sent a proper toilet to space, given that the Apollo missions didn't really have a *toilet* (they had plastic bags). Orion has an actual, honest to god, *toilet*, and quite the advanced toilet at that. The "Universal Waste Management System," commonly known as 'toilet,' is basically a little private room with a hatch/seat for solid waste, and a hose for liquid waste. The solid waste is stored and will be brought back to Earth, but the liquid waste is supposed to be... ejected into space. Lmao. Also, the toilet is so loud during operation that you need to wear hearing protection when using it lol{{ <ref key="miller2026" /> }}
 
-Unfortunately, the Universal Waste Management System, in all its groundbreaking space waste management glory, broke a couple hours into the mission. The crew could still poop, it's just the urination related functionality that broke.{{ref(key="malik2026")}}
+Unfortunately, the Universal Waste Management System, in all its groundbreaking space waste management glory, broke a couple hours into the mission. The crew could still poop, it's just the urination related functionality that broke.{{ <ref key="malik2026" /> }}
 
 ...Fortunately!
 
-{% censor(repl='They fixed Orions toilet!! they can now eject pee into space again >:3c') %}
+{% <censor repl="They fixed Orions toilet!! they can now eject pee into space again >:3c"> %}
 <!-- me: "GOOD NEWS :bugcat_excited:
 they fixed Orions toilet!! they can now eject piss into space again >:3c #artemis" -->
-{{note(id="aklhp69x01dl0015")}}
-{% end %}
+{{ <note id="aklhp69x01dl0015" /> }}
+{% </censor> %}
 
-Yup! They fixed it today (April 2nd).{{ref(key="malik2026")}}{{ref(key="zakrzewski2026")}} Mission Specialist Christina Koch said she was the 'plumber' and fixed the toilet lol.{{ref(key="abcnews2026")}}
+Yup! They fixed it today (April 2nd).{{ <ref key="malik2026" /> }}{{ <ref key="zakrzewski2026" /> }} Mission Specialist Christina Koch said she was the 'plumber' and fixed the toilet lol.{{ <ref key="abcnews2026" /> }}
 
-Update (April 4th): The toilet has a...burning smell?? The smell is unknown apparently, but the crew is still allowed to use the toilet.{{ref(key="malik2026_b")}}
+Update (April 4th): The toilet has a...burning smell?? The smell is unknown apparently, but the crew is still allowed to use the toilet.{{ <ref key="malik2026_b" /> }}

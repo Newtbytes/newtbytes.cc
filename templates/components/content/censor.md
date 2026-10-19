@@ -1,9 +1,11 @@
-{% if get_env(name='CENSORED', default=false) == 'true' %}
-    {%- if repl is defined %} {{ repl | safe }} {% endif -%}
+{% component censor(orig=none, repl=none) -%}
+{% if <utils.censored /> == "true" %}
+    {%- if repl %} {{ repl | safe }} {% endif -%}
 {% else %}
-    {%- if body is defined %}
+    {%- if body %}
         {{- body | safe -}}
-    {% elif orig is defined %}
+    {% elif orig %}
         {{- orig | safe -}}
     {% endif -%}
 {% endif %}
+{%- endcomponent censor %}

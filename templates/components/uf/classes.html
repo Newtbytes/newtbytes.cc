@@ -1,81 +1,81 @@
 {# Class names for Microformats2 and hAtom #}
 
-{%- macro entry() -%}
+{%- component cls.entry() -%}
     entry h-entry hentry
-{%- endmacro entry -%}
+{%- endcomponent cls.entry -%}
 
-{%- macro feed() -%}
+{%- component cls.feed() -%}
     feed h-feed hfeed
-{%- endmacro feed -%}
+{%- endcomponent cls.feed -%}
 
-{%- macro title() -%}
+{%- component cls.title() -%}
     title entry-title p-name
-{%- endmacro title -%}
+{%- endcomponent cls.title -%}
 
-{%- macro author() -%}
+{%- component cls.author() -%}
     author p-author
-{%- endmacro author -%}
+{%- endcomponent cls.author -%}
 
-{%- macro dt(type="") -%}
+{%- component cls.dt(type="") -%}
     dt-{{type}} {{type}}
-{%- endmacro dt -%}
+{%- endcomponent cls.dt -%}
 
-{%- macro summary() -%}
+{%- component cls.summary() -%}
     summary entry-summary p-summary
-{%- endmacro summary -%}
+{%- endcomponent cls.summary -%}
 
-{%- macro content() -%}
+{%- component cls.content() -%}
     content entry-content e-content
-{%- endmacro content -%}
+{%- endcomponent cls.content -%}
 
-{%- macro url() -%}
+{%- component cls.url() -%}
     url u-url
-{%- endmacro url -%}
+{%- endcomponent cls.url -%}
 
-{%- macro uid() -%}
+{%- component cls.uid() -%}
     uid u-uid
-{%- endmacro uid -%}
+{%- endcomponent cls.uid -%}
 
-{%- macro citation() -%}
+{%- component cls.citation() -%}
     h-cite cite
-{%- endmacro citation -%}
+{%- endcomponent cls.citation -%}
 
-{%- macro profile() -%}
+{%- component cls.profile() -%}
     vcard hcard h-card card
-{%- endmacro profile -%}
+{%- endcomponent cls.profile -%}
 
-{%- macro name() -%}
+{%- component cls.name() -%}
     p-name name fn
-{%- endmacro name -%}
+{%- endcomponent cls.name -%}
 
-{%- macro given_name() -%}
+{%- component cls.given_name() -%}
     n given-name p-given-name
-{%- endmacro given_name -%}
+{%- endcomponent cls.given_name -%}
 
-{%- macro family_name() -%}
+{%- component cls.family_name() -%}
     n family-name p-family-name
-{%- endmacro family_name -%}
+{%- endcomponent cls.family_name -%}
 
-{%- macro nickname() -%}
+{%- component cls.nickname() -%}
     nickname p-nickname
-{%- endmacro nickname -%}
+{%- endcomponent cls.nickname -%}
 
-{%- macro logo() -%}
+{%- component cls.logo() -%}
     photo u-logo
-{%- endmacro logo -%}
+{%- endcomponent cls.logo -%}
 
-{%- macro email() -%}
+{%- component cls.email() -%}
     u-email email
-{%- endmacro logo -%}
+{%- endcomponent cls.email -%}
 
-{%- macro reply() -%}
+{%- component cls.reply() -%}
     u-in-reply-to
-{%- endmacro reply -%}
+{%- endcomponent cls.reply -%}
 
-{%- macro like() -%}
+{%- component cls.like() -%}
     u-like-of
-{%- endmacro like -%}
+{%- endcomponent cls.like -%}
 
-{%- macro repost() -%}
+{%- component cls.repost() -%}
     u-repost-of
-{%- endmacro repost -%}
+{%- endcomponent cls.repost -%}

@@ -1,5 +1,5 @@
-{% import "macros/utils.html" as utils %}
-
-{% set path = utils::url_join(a="img/div", b=name ~ ".png") %}
+{% component divider(name) %}
+{% set path = <utils.url_join a="img/div" b={name ~ ".png"} /> %}
 {% set meta = get_image_metadata(path=path) %}
 <img src="{{get_url(path=path)}}" width="{{meta.width}}" height="{{meta.height}}" alt="" class="centered-img">
+{% endcomponent divider %}

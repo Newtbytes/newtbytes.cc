@@ -1,5 +1,3 @@
-{% import "macros/uf/classes.html" as cls %}
-
-{%- macro p(value, type) -%}
+{%- component uf_types.p(value, type) -%}
     <span class="p-{{type}} {{type}}">{{- value | safe -}}</span>,
-{%- endmacro p -%}
+{%- endcomponent uf_types.p -%}

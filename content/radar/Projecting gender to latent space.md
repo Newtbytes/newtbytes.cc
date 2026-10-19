@@ -7,4 +7,4 @@ authors = ["newtbytes"]
 censored = true
 +++
 
-{{note(id="al9vrzp2l3go05or")}}
+{{ <note id="al9vrzp2l3go05or" /> }}

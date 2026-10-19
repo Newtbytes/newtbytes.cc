@@ -1,6 +1,6 @@
-{% import "macros/utils.html" as utils %}
-
-{%- set citations = load_data(path=utils::url_join(a=page.colocated_path, b="references.bib"), format="bibtex", required=false) -%}
+{% component ref(key, @page) %}
+{%- set bib_path = <utils.url_join a={page.colocated_path} b="references.bib" /> -%}
+{%- set citations = load_data(path=bib_path, format="bibtex", required=false) -%}
 {%- if citations -%}
     {%- for bib in citations.bibliographies -%}
         {%- if bib.citation_key == key -%}
@@ -10,3 +10,4 @@
 
     <sup><a href="#bibref-{{ key }}" class="ref-link">[{{ num | default(value="#noref") }}]</a></sup>
 {%- endif -%}
+{% endcomponent ref %}

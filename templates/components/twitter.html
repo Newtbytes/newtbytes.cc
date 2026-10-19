@@ -1,6 +1,4 @@
-{% import "macros/utils.html" as utils %}
-
-{% macro metadata(url, img="", title="", desc="") %}
+{% component twitter.metadata(url, img=none, title=none, desc=none, @config) %}
     <meta property="twitter:url" content="{{ url | safe }}">
     <meta property="twitter:domain" content="{{ config.extra.domain | safe }}">
 
@@ -16,4 +14,4 @@
     {% if desc %}
         <meta name="twitter:description" content="{{ desc | striptags | safe }}">
     {% endif %}
-{% endmacro metadata %}
+{% endcomponent twitter.metadata %}

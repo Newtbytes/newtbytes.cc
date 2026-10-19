@@ -1,20 +1,16 @@
-{% import "macros/opengraph.html" as og %}
-{% import "macros/uf/h-card.html" as h_card %}
-{% import "macros/utils.html" as utils %}
-
 {% extends "webpage.html" %}
 
 {% block meta %}
     {{ super() }}
 
-    {{ og::type(value="profile") }}
+    {{ <og.type value="profile" /> }}
 
-    {{ og::profile(
-    first="Ness",
-    last="Shannon",
-    username="newtbytes",
-    gender=utils::ness_gender())
-    }}
+    {{ <og.profile
+    first="Ness"
+    last="Shannon"
+    username="newtbytes"
+    gender={<utils.ness_gender />}
+    /> }}
 {% endblock meta %}
 
 {% block feeds %}
@@ -38,17 +34,17 @@
 {% endblock webPageSchema %}
 
 {% block content %}
-    {{ h_card::profile(
-    first="Ness",
-    last="Shannon",
-    username="newtbytes",
-    gender=utils::ness_gender(),
-    email="ness@newtbytes.cc",
-    url="https://newtbytes.cc/",
-    pfp=get_url(path="img/pfp.png"),
-    bday="2007-9-19",
-    schema="property=mainEntity")
-    }}
+    {{ <h_card.profile
+    first="Ness"
+    last="Shannon"
+    username="newtbytes"
+    gender={<utils.ness_gender />}
+    email="ness@newtbytes.cc"
+    url="https://newtbytes.cc/"
+    pfp={get_url(path="img/pfp.png")}
+    bday="2007-09-19"
+    schema="property=mainEntity"
+    /> }}
 
     {{ section.content | safe }}
 {% endblock content %}

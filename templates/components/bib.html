@@ -1,20 +1,16 @@
-{% import "macros/types.html" as types %}
-{% import "macros/uf/types.html" as uf_types %}
-{% import "macros/uf/classes.html" as cls %}
-
-{% macro strip(in) %}
-    {{ in | replace(from="---",to="—") | replace(from="--", to="-") | replace(from="{",to="") | replace(from="}", to="") |
+{% component bib.strip() %}
+    {{ body | replace(from="---",to="—") | replace(from="--", to="-") | replace(from="{",to="") | replace(from="}", to="") |
     safe }}
-{% endmacro strip %}
+{% endcomponent bib.strip %}
 
-{% macro book(author, title, publisher, year) %}
+{% component bib.book(author, title, publisher, year) %}
     {{ author }},
     <cite>{{ title }}</cite>,
-    {{ publication }},
+    {{ publisher }},
     {{ year }}
-{% endmacro book %}
+{% endcomponent bib.book %}
 
-{% macro article(author, title, journal, volume, number, pages, year, month="") %}
+{% component bib.article(author, title, journal, volume, number, pages, year, month="") %}
     {{ author }},
     "{{ title }}",
     <em>{{ journal }}</em>,
@@ -23,9 +19,9 @@
     pp. {{ pages }},
     {% if month %}{{ month }}{% endif %}
     {{ year }}
-{% endmacro article %}
+{% endcomponent bib.article %}
 
-{% macro online(title, author="", pubdate="", publisher="", year="", url="", urldate="") %}
+{% component bib.online(title, author="", pubdate="", publisher="", year="", url="", urldate="") %}
     {% if author %}{{ author }}{% endif %}
     {% if pubdate %}({{ pubdate }}).{% endif %}
     "{{ title }},"
@@ -33,18 +29,18 @@
     {% if year %}{{ year }}{% endif %}
     {% if url %}{{ url }}.{% endif %}
     {% if urldate %}<em>Accessed {{ urldate }}</em>{% endif %}
-{% endmacro %}
+{% endcomponent bib.online %}
 
-{% macro inproceedings(author, title, booktitle, address, year, pages) %}
+{% component bib.inproceedings(author, title, booktitle, address, year, pages) %}
     {{ author }},
     "{{ title }},"
     in <cite>{{ booktitle }}</cite>,
     {{ address }},
     {{ year }},
     pp. {{ pages }}
-{% endmacro inproceedings %}
+{% endcomponent bib.inproceedings %}
 
-{% macro manual(author, title, organization, address, year, edition="", month="") %}
+{% component bib.manual(author, title, organization, address, year, edition="", month="") %}
     {{ author }},
     <cite>{{ title }}</cite>,
     {{ organization }},
@@ -52,26 +48,25 @@
     {% if edition %}{{ edition }},{% endif %}
     {% if month %}{{ month }}{% endif %}
     {{ year }}.
-{% endmacro manual %}
+{% endcomponent bib.manual %}
 
-{% macro thesis(author, title, type, address, year) %}
+{% component bib.thesis(author, title, type, address, year) %}
     {{ author }},
     "{{ title }},"
     {{ type }},
-    {{ school }},
     {{ address }},
     {{ year }}
-{% endmacro thesis %}
+{% endcomponent bib.thesis %}
 
-{% macro mastersthesis(author, title, address, year) %}
-    {{ bib::thesis(author=author, title=title, type="M.S. Thesis", address=address, year=year) }}
-{% endmacro mastersthesis %}
+{% component bib.mastersthesis(author, title, address, year) %}
+    {{ <bib.thesis author title type="M.S. Thesis" address year /> }}
+{% endcomponent bib.mastersthesis %}
 
-{% macro phdthesis(author, title, address, year) %}
-    {{ bib::thesis(author=author, title=title, type="Ph.D. dissertation", address=address, year=year) }}
-{% endmacro phdthesis %}
+{% component bib.phdthesis(author, title, address, year) %}
+    {{ <bib.thesis author title type="Ph.D. dissertation" address year /> }}
+{% endcomponent bib.phdthesis %}
 
-{% macro misc(title, author="", publisher="", year="", doi="", url="") %}
+{% component bib.misc(title, author="", publisher="", year="", doi="", url="") %}
     {% if author %}{{ author }},{% endif %}
     {{ title }},
     {% if publisher %}{{ publisher }},{% endif %}
@@ -81,9 +76,9 @@
     {% elif url %}
         {{ url }}
     {% endif %}
-{% endmacro misc %}
+{% endcomponent bib.misc %}
 
-{% macro bibref(bibliography,num) %}
+{% component bib.bibref(bibliography, num) %}
     {# Get reference properties #}
     {% set author = bibliography.tags | get(key="author", default="") %}
     {% set title = bibliography.tags | get(key="title", default="") %}
@@ -105,58 +100,58 @@
 
     {# Markup reference properties #}
     {% if author %}
-        {% set author = types::author(name=author) %}
+        {% set author = <types.author name={author} /> %}
     {% endif %}
 
-    {% if title %} 
-        {% set class = cls::name() %}
-        {% set title = '<span property="headline" class="' ~ class ~ '">' ~ title ~ '</span>' | safe %}
+    {% if title %}
+        {% set class = <cls.name /> %}
+        {% set title = ('<span property="headline" class="' ~ class ~ '">' ~ title ~ '</span>') | safe %}
     {% endif %}
 
-    {% if pubdate %} {% set pubdate = types::dt(date=pubdate, type="published") | trim %} {% endif %}
+    {% if pubdate %} {% set pubdate = <types.dt date={pubdate} type="published" /> | trim %} {% endif %}
 
     {% if doi %}
-        {% set class = cls::url() %}
-        {% set doi = '<a href="https://doi.org/' ~ doi ~ '" class="' ~ class ~ '" rel="sameAs">' ~ doi ~ '</a>' %}
+        {% set class = <cls.url /> %}
+        {% set doi = ('<a href="https://doi.org/' ~ doi ~ '" class="' ~ class ~ '" rel="sameAs">' ~ doi ~ '</a>') | safe %}
     {% endif %}
 
     {% if url %}
-        {% set class = cls::url() %}
-        {% set url = '<a href="' ~ url ~ '" target="_blank" class="' ~ class ~ '" rel="sameAs">' ~ url ~ '</a>' %}
+        {% set class = <cls.url /> %}
+        {% set url = ('<a href="' ~ url ~ '" target="_blank" class="' ~ class ~ '" rel="sameAs">' ~ url ~ '</a>') | safe %}
     {% endif %}
-    {% if urldate %} {% set urldate = types::dt(date=urldate, type="accessed") %} {% endif %}
+    {% if urldate %} {% set urldate = <types.dt date={urldate} type="accessed" /> %} {% endif %}
 
     <span property="citation" typeof="CreativeWork">
         {% if bibliography.entry_type == "book" %}
-            {{ bib::book(author=author, title=title, publisher=publisher, year=year) }}
+            {{ <bib.book author title publisher year /> }}
         {% elif bibliography.entry_type == "article" %}
-            {{ bib::article(author=author, title=title, journal=journal, volume=volume, number=number, pages=pages, year=year, month=month) }}
+            {{ <bib.article author title journal volume number pages year month /> }}
         {% elif bibliography.entry_type == "online" %}
-            {{ bib::online(title=title, author=author, pubdate=pubdate, publisher=publisher, year=year, url=url, urldate=urldate) }}
+            {{ <bib.online title author pubdate publisher year url urldate /> }}
         {% elif bibliography.entry_type == "inproceedings" %}
-            {{ bib::inproceedings(author=author, title=title, booktitle=booktitle, address=address, year=year, pages=pages) }}
+            {{ <bib.inproceedings author title booktitle address year pages /> }}
         {% elif bibliography.entry_type == "misc" %}
-            {{ bib::misc(title=title, author=author, publisher=publisher, year=year, doi=doi, url=url) }}
+            {{ <bib.misc title author publisher year doi url /> }}
         {% elif bibliography.entry_type == "mastersthesis" %}
-            {{ bib::mastersthesis(author=author, title=title, address=address, year=year) }}
+            {{ <bib.mastersthesis author title address year /> }}
         {% elif bibliography.entry_type == "phdthesis" %}
-            {{ bib::phdthesis(author=author, title=title, address=address, year=year) }}
+            {{ <bib.phdthesis author title address year /> }}
         {% elif bibliography.entry_type == "manual" %}
-            {{ bib::manual(author=author, title=title, organization=organization, address=address, year=year, edition=edition, month=month) }}
+            {{ <bib.manual author title organization address year edition month /> }}
         {# TODO: {% elif bibliography.entry_type == "githubissue" %}
-            {{ bib::githubissue(ref=bibliography) }} #}
+            {{ <bib.githubissue ref={bibliography} /> }} #}
         {% else %}
             unsupported reference type
         {% endif %}
     </span>
-{% endmacro bibref %}
+{% endcomponent bib.bibref %}
 
-{% macro ref(bibliography,num) %}
+{% component bib.ref(bibliography, num) %}
     <dt class="ref-num" id="bibref-{{ bibliography.citation_key }}">[{{ num }}]</dt>
-    <dd>{{ bib::strip(in=bib::bibref(bibliography=bibliography,num=num)) }}</dd>
-{% endmacro ref %}
+    <dd>{% <bib.strip> %}{{ <bib.bibref bibliography num /> }}{% </bib.strip> %}</dd>
+{% endcomponent bib.ref %}
 
-{% macro refs_list(page) %}
+{% component bib.refs_list(page) %}
     {% if page.colocated_path %}
         {% set citations = load_data(path=page.colocated_path ~ "references.bib", format="bibtex", required=false) %}
         {% if citations %}
@@ -168,13 +163,13 @@
                             References
                         </h2>
                     </summary>
-                    <dl class="{{cls::citation()}}">
+                    <dl class="{{ <cls.citation /> }}">
                         {% for citation in citations.bibliographies %}
-                            {{ bib::ref(bibliography=citation,num=loop.index) }}
+                            {{ <bib.ref bibliography={citation} num={loop.index} /> }}
                         {% endfor %}
                     </dl>
                 {% endif %}
             </details>
         {% endif %}
     {% endif %}
-{% endmacro refs_list %}
+{% endcomponent bib.refs_list %}
