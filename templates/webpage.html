@@ -83,7 +83,7 @@
         alt={meta_image_alt}
         /> }}
 
-        {% if meta_author == "newtbytes" and not <utils.censored /> %}
+        {% if meta_author == "newtbytes" and <utils.censored /> == 'false' %}
             <meta name="fediverse:creator" content="newtbytes@transfem.social" />
         {% endif %}
 
