@@ -1,10 +1,8 @@
-{% import "macros/utils.html" as utils %}
-
-{% macro metadata(canon_url, author, title, desc="") %}
+{% component meta.metadata(canon_url, author, title, desc=none) %}
     <link rel="canonical" href="{{ canon_url | safe }}">
     <meta name="author" content="{{ author }}">
     <title>{{ title | safe }}</title>
     {% if desc %}
         <meta name="description" content="{{ desc | striptags | safe }}">
     {% endif %}
-{% endmacro metadata %}
+{% endcomponent meta.metadata %}

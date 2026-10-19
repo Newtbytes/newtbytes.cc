@@ -5,14 +5,14 @@ template = "index.html"
 
 # WELCOME TO NEWT'S COVE
 
-{{divider(name="happy-star")}}
+{{ <divider name="happy-star" /> }}
 
 ## Welcome to my lil place on the internet
 
 I'm Ness Shannon, aka Newt, aka newtbytes! I'm into all things cool and weird on the web ;).  
 I'm (kinda) nerdy.
 
-{{divider(name="happy-star")}}
+{{ <divider name="happy-star" /> }}
 
 ## Interests :3
 
@@ -27,7 +27,7 @@ Here's a very short and overly vague list of my interests:
 - Creative writing
   - Science fiction, mostly! I'm currently writing a novel. I should write more about that project....
 
-{% censor() %}
+{% <censor> %}
 ## Links & Socials
 
 - Twitch: <a rel="me" href="https://twitch.tv/newtbytes">newtbytes</a>
@@ -39,9 +39,9 @@ Here's a very short and overly vague list of my interests:
 - Neocities: <a rel="me" href="https://neocities.org/site/newtbytes">neocities.org/site/newtbytes</a>
 - toyhouse: <a rel="me" href="https://toyhou.se/newtbytes">toyhou.se/newtbytes</a>
 - transfem.social: <a rel="me" href="https://transfem.social/@newtbytes">@newtbytes@transfem.social</a>
-{% end %}
+{% </censor> %}
 
-{{divider(name="happy-star")}}
+{{ <divider name="happy-star" /> }}
 
 <div style="text-align:center;">
 
@@ -53,10 +53,10 @@ oh also i have no idea what i'm doing
 ![Caution! This site under construction!](img/stamp/site_under_construction.gif)
 
 there's not much content here. maybe one day i'll actually write something.
-For now, just know that somewhere, a nerdy {{ censor(orig="girly", repl="guy") }} that yearns to express {{ censor(orig="her", repl="his") }} passions online exists.
+For now, just know that somewhere, a nerdy {{ <censor orig="girly" repl="guy" /> }} that yearns to express {{ <censor orig="her" repl="his" /> }} passions online exists.
 </div>
 
-{{divider(name="happy-star")}}
+{{ <divider name="happy-star" /> }}
 
 <div style="float:right;padding:1em;">
 

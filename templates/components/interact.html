@@ -1,0 +1,21 @@
+{% component interact.like_of(url, display="") %}
+    {{ <types.link url title={display} class={<cls.like />} /> }}
+{% endcomponent interact.like_of %}
+
+{% component interact.repost_of(url, display="") %}
+    {{ <types.link url title={display} class={<cls.repost />} /> }}
+{% endcomponent interact.repost_of %}
+
+{% component interact.reply_to(url, title="") %}
+    {{ <types.link url title class={<cls.reply />} /> }}
+{% endcomponent interact.reply_to %}
+
+{% component interact.mention_mastodon(user) %}
+    {% set user = user | trim_start(pat="@") %}
+    {{ <types.link url={"https://transfem.social/@" ~ user} title={"@" ~ user} /> }}
+{% endcomponent interact.mention_mastodon %}
+
+{% component interact.mention_bsky(user) %}
+    {% set user = user | trim_start(pat="@") %}
+    {{ <types.link url={"https://bsky.app/profile/" ~ user} title={"@" ~ user} /> }}
+{% endcomponent interact.mention_bsky %}

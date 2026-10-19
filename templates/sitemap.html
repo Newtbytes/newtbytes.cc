@@ -1,36 +1,33 @@
 {% extends "webpage.html" %}
 
-{% import "macros/types.html" as types %}
-{% import "macros/utils.html" as utils %}
-
-{% macro section_header(title, link="", depth=1) %}
-    <{{utils::level_to_header(level=depth)}}>
+{% component sitemap.section_header(title, link="", depth=1) %}
+    <{{ <utils.level_to_header level={depth} /> }}>
         {% if link %}
             <a href="{{link}}">{{title}}</a>
         {% else %}
             {{title}}
         {% endif %}
-    </{{utils::level_to_header(level=depth)}}>
-{% endmacro %}
+    </{{ <utils.level_to_header level={depth} /> }}>
+{% endcomponent sitemap.section_header %}
 
-{% macro map_section(section, depth=1) %}
-    {{self::section_header(title=section.title, link=section.permalink, depth=depth)}}
+{% component sitemap.map_section(section, depth=1) %}
+    {{ <sitemap.section_header title={section.title} link={section.permalink} depth /> }}
 
     {% if section.generate_feeds %}
-        {{types::section_feeds(section=section)}}
+        {{ <types.section_feeds section /> }}
     {% endif %}
 
     {% for subsection in section.subsections %}
         {% set subsection = get_section(path=subsection) %}
-        {{self::map_section(section=subsection, depth=depth+1)}}
+        {{ <sitemap.map_section section={subsection} depth={depth+1} /> }}
     {% endfor %}
 
     {% for year, pages in section.pages | group_by(attribute="year") %}
-        {{self::section_header(title=year, depth=depth+1)}}
+        {{ <sitemap.section_header title={year} depth={depth+1} /> }}
 
         <ul>
             {% for page in pages %}
-                {% if utils::censored() == 'true' and page.extra | get(key="censored", default=false) %}
+                {% if <utils.censored /> == "true" and page.extra | get(key="censored", default=false) %}
                     {% continue %}
                 {% endif %}
 
@@ -41,24 +38,24 @@
 
                 <li>
                     {% if page.date %}
-                        {{types::dt(date=page.date, type="published", format="%B %e")}}:
+                        {{ <types.dt date={page.date} type="published" format="%B %e" /> }}:
                     {% endif %}
 
                     <a href="{{page.permalink}}">{{title}}</a>
 
                     {% if page.updated %}
-                        <small>(updated {{types::dt(date=page.updated, type="published")}})</small>
+                        <small>(updated {{ <types.dt date={page.updated} type="published" /> }})</small>
                     {% endif %}
                 </li>
             {% endfor %}
         </ul>
     {% endfor %}
-{% endmacro map_section %}
+{% endcomponent sitemap.map_section %}
 
 {% block webPageSchema %} typeof="CollectionPage" {% endblock webPageSchema %}
 
 {% block content %}
     <h1 property="headline">Sitemap</h1>
 
-    {{self::map_section(section=get_section(path="_index.md"), depth=2)}}
+    {{ <sitemap.map_section section={get_section(path="_index.md")} depth={2} /> }}
 {% endblock content %}
