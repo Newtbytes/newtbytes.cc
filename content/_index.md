@@ -13,13 +13,13 @@ template = "index.html"
   <img src="/img/pfp.png" alt="art of newtbyte's fursona, Ness" style="width: 256px;">
   <p style="text-align: center;">
     Ness Shannon
-    {% censor() %}
-    <small>(she/her)</small>
-    {% end %}
+    {% <censor> %}<small>
+      (she/her)
+    </small>{% </censor> %}
   </p>
 </div>
 
-I'm Ness Shannon, aka Newt, aka newtbytes! I'm a {{ censor(orig="[trans](/transgender) girl") }} programmer, and I'm into all things cool and weird on the web ;).
+I'm Ness Shannon, aka Newt, aka newtbytes! I'm a {{ <censor orig="[trans](/transgender) girl" /> }} programmer, and I'm into all things cool and weird on the web ;).
 
 I'm juuuust a lil nerdy. x3
 
