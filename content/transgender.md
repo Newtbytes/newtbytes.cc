@@ -57,7 +57,7 @@ There's downsides to knowing i'm a girl too, of course. I never really got "dysp
 I avoided mirrors before (without realizing it or knowing why), but now I can't stand seeing myself looking all masculine in the mirror. Usually the first thing I notice is all my facial/body hair, and usually I instantly grab my electric razor and buzz it off.
 I've also noticed that if a shirt feels too short or small when I try it on looking for something to wear, I'll instantly move on to try something a bit larger. Before knowing, I was mostly fine if a shirt was a bit small, as long as it was comfortable I would just put on whatever I grabbed first. But now if a shirt makes me feel masculine that also makes me uncomfortable :P I bet if I had more outfits I actually wanted to wear, I'd also probably spend more time caring about what I wear each day.
 
-### the trans community <3
+<!-- ### the trans community <3
 
 - vrchat is peak
-- furries
+- furries -->
