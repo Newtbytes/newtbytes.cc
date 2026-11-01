@@ -1,7 +1,4 @@
-{% import "macros/uf/types.html" as uf_types %}
-
-
-{%- macro dt(date, type, visible=true, for="", format="", timezone="") -%}
+{%- component types.dt(date, type, visible=true, for="", format="", timezone="") -%}
     {% set type = type | lower %}
 
     {%- if type == "bday" -%}
@@ -16,7 +13,7 @@
         {% set prop = prop | capitalize %}
     {% endif %}
 
-    {% set class = cls::dt(type=type) %}
+    {% set class = <cls.dt type /> %}
     {% if for == "entry" %}
         {% if type == "published" or type == "date" %}
             {% set class = class ~ " entry-date" %}
@@ -42,10 +39,10 @@
             {%- endif -%}
         {%- endif -%}
     </time>
-{%- endmacro dt -%}
+{%- endcomponent types.dt -%}
 
 
-{% macro link(url, title="", visible=true, class="") %}
+{% component types.link(url, title=none, visible=true, class="") %}
     {% if not title %}
         {% set title = url %}
     {% endif %}
@@ -63,11 +60,11 @@
             {{ title }}
         {% endif %}
     </a>
-{% endmacro link %}
+{% endcomponent types.link %}
 
 
-{% macro author(name="", url="", visible=true, inline=true) %}
-    {% if not name %} 
+{% component types.author(name=none, url=none, visible=true, inline=true, @config) %}
+    {% if not name %}
         {% set name = config.author %}
     {% endif %}
     {% if not url and name == config.author %}
@@ -82,18 +79,18 @@
         {% endif %}
 
         {% if inline %}<span{% else %}<address{%endif%}
-            class="{{-cls::author()}} {{cls::profile()-}}" property="author" typeof="Person"
+            class="{{- <cls.author /> }} {{ <cls.profile /> -}}" property="author" typeof="Person"
             {% if inline and not visible %}style="display:none;"{% endif %}
         >
-            <a 
+            <a
                 href="{{ url | safe }}"
-                class="{{cls::url()}}"
+                class="{{ <cls.url /> }}"
                 rel="{{ rel }}"
                 property="url"
                 {% if not visible and name %}title="{{name}}"{% endif %}
             >
                 {% if visible and name %}
-                    <span property="name" class="{{cls::name()}}">{{ name }}</span>
+                    <span property="name" class="{{ <cls.name /> }}">{{ name }}</span>
                 {% endif %}
             </a>
         {% if inline %}</span>{% else %}</address>{%endif%}
@@ -101,35 +98,35 @@
     {% else %}
         <{% if visible %}span{% else %}data{% endif %}
             property="author name" typeof="Person"
-            class="{{-cls::author()}} {{cls::profile()}} {{cls::name()-}}"
+            class="{{- <cls.author /> }} {{ <cls.profile /> }} {{ <cls.name /> -}}"
         >
             {%- if visible -%}{{- name -}}{%- endif -%}
         </{% if visible %}span{% else %}data{% endif %}>
     {% endif %}
-{% endmacro author %}
+{% endcomponent types.author %}
 
-{% macro icon(fn, size=32) %}
+{% component types.icon(fn, size=32) %}
 <img src="/img/icon/{{fn}}" class="icon" width="{{size}}" height="{{size}}">
-{% endmacro icon %}
+{% endcomponent types.icon %}
 
-{% macro section_feeds(section) %}
+{% component types.section_feeds(section, @config) %}
     <ul>
         {% if "rss.xml" in config.feed_filenames %}
             <li><small>
-                {{types::icon(fn="rss.svg")}}
-                <a href="{{utils::url_join(a=section.path, b='rss.xml')}}" rel="alternate">RSS feed</a>
+                {{ <types.icon fn="rss.svg" /> }}
+                <a href="{{ <utils.url_join a={section.path} b="rss.xml" /> }}" rel="alternate">RSS feed</a>
             </small></li>
         {% endif %}
         {% if "atom.xml" in config.feed_filenames %}
             <li><small>
-                {{types::icon(fn="rss.svg")}}
-                <a href="{{utils::url_join(a=section.path, b='atom.xml')}}" rel="alternate">Atom feed</a>
+                {{ <types.icon fn="rss.svg" /> }}
+                <a href="{{ <utils.url_join a={section.path} b="atom.xml" /> }}" rel="alternate">Atom feed</a>
             </small></li>
         {% endif %}
     </ul>
-{% endmacro section_feeds %}
+{% endcomponent types.section_feeds %}
 
-{% macro toc(toc) %}
+{% component types.toc(toc) %}
     {# Require at least four headings for TOC to be generated #}
     {% if 4 <= toc | length %}
         <h3>Table of Contents</h3>
@@ -151,14 +148,14 @@
         </ol>
         <img src="/img/div/happy-star.png" alt="">
     {% endif %}
-{% endmacro toc %}
+{% endcomponent types.toc %}
 
 {#
     image_path: path to original image
     image_width: width of original image
     alts: alternate images resized with resize_image
 #}
-{% macro srcset(image_path, image_width, alts) %}
+{% component types.srcset(image_path, image_width, alts) %}
     {% set image_url = get_url(path=image_path) %}
     {% set alts = alts | sort(attribute='width')%}
 
@@ -173,13 +170,13 @@
     {% for image in alts %}
         {% set scale = image.width / smallest_width %}
         {% if scale != 1 %}
-            {{image | get(key='url', default=image_url) | safe}} {{scale | int}}x,
+            {{image | get(key='url', default=image_url) | safe}} {{scale | round(method="floor") | int}}x,
         {% endif %}
     {% endfor %}
-    {{image_url | safe}} {{image_width / smallest_width | int}}x
-{% endmacro srcset %}
+    {{image_url | safe}} {{(image_width / smallest_width) | round(method="floor") | int}}x
+{% endcomponent types.srcset %}
 
-{% macro image(path, alt="", class="") %}
+{% component types.image(path, alt="", class="") %}
     {% set scales = [2,4,8] %}
     {% set meta = get_image_metadata(path=path) %}
     {% set images = [] %}
@@ -192,11 +189,11 @@
             {% set height = meta.height / divisor %}
 
             {% if width * height > 8*8 %}
-                {% set width = width | int %}
-                {% set height = height | int %}
+                {% set width = width | round(method="floor") | int %}
+                {% set height = height | round(method="floor") | int %}
 
                 {% set image = resize_image(path=path, width=width, height=height) %}
-                {% set_global images = images | concat(with=image) %}
+                {% set_global images = [...images, image] %}
                 {% if divisor == largest_scale %}
                     {% set_global smallest_img = image %}
                 {% endif %}
@@ -214,14 +211,14 @@
         height="{{meta.height}}"
         {% if alt %}alt="{{alt | safe}}"{% endif %}
         {% if 0 < images | length %}
-        srcset="{{ types::srcset(image_path=path, image_width=meta.width, alts=images) }}"
+        srcset="{{ <types.srcset image_path={path} image_width={meta.width} alts={images} /> }}"
         {% endif %}
         type="{{meta.mime | safe}}"
         {% if class %} class="{{ class }}" {% endif %}
     >
-{% endmacro image %}
+{% endcomponent types.image %}
 
-{% macro picture(path, alt="", caption="", formats="", class="") %}
+{% component types.picture(path, alt="", caption="", formats=none, class="") %}
     {% set meta = get_image_metadata(path=path) %}
 
     {% if not formats %}
@@ -231,18 +228,18 @@
     {% if caption %} <figure {% if class and caption %} class="{{class}}" {% endif %}> {% endif %}
         {% if 0 < formats | length %} <picture {% if class and not caption %} class="{{class}}" {% endif %}> {% endif %}
             {% for fmt in formats %}
-                {% if not path is ending_with("." ~ fmt) %}
+                {% if not path is ending_with(pat="." ~ fmt) %}
                     {% set img = resize_image(path=path, width=meta.width, height=meta.height, format=fmt) %}
                     {# FIXME: technically type="image/{{fmt}}" is incorrect for some formats #}
                     <source srcset="{{img.url | safe}}" type="image/{{fmt}}">
                 {% endif %}
             {% endfor %}
 
-            {{ types::image(path=path, alt=alt) }}
+            {{ <types.image path alt /> }}
         {% if 0 < formats | length %} </picture> {% endif %}
 
         {% if caption%}
             <figcaption>{{ caption | safe }}</figcaption>
         {% endif %}
     {% if caption %} </figure> {% endif %}
-{% endmacro picture %}
+{% endcomponent types.picture %}

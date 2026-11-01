@@ -13,14 +13,14 @@
 {% block rss %}
     {% if "rss.xml" in config.feed_filenames %}
         <link rel="alternate" type="application/rss+xml" title="RSS"
-            href="{{ utils::url_join(a=section.permalink, b='rss.xml') }}">
+            href="{{ <utils.url_join a={section.permalink} b="rss.xml" /> }}">
     {% endif %}
 {% endblock rss %}
 
 {% block atom %}
     {% if "atom.xml" in config.feed_filenames %}
         <link rel="alternate" type="application/atom+xml" title="Atom"
-            href="{{ utils::url_join(a=section.permalink, b='atom.xml') }}">
+            href="{{ <utils.url_join a={section.permalink} b="atom.xml" /> }}">
     {% endif %}
 {% endblock atom %}
 
@@ -39,12 +39,12 @@
 {% block toc %}
     {% if section.generate_feeds %}
         {% if section.generate_feeds %}
-            {{types::section_feeds(section=section)}}
+            {{ <types.section_feeds section /> }}
         {% endif %}
     {% endif %}
 
     {% if section.toc %}
-        {{ types::toc(toc=section.toc) }}
+        {{ <types.toc toc={section.toc} /> }}
     {% endif %}
 {% endblock toc %}
 
@@ -55,19 +55,19 @@
 
 {% block posts %}
     {% for page in section.pages %}
-        {% if utils::censored() == 'true' and page.extra | get(key="censored", default=false) %}
+        {% if <utils.censored /> == "true" and page.extra | get(key="censored", default=false) %}
             {% continue %}
         {% endif %}
-        <div class="section-entry {{cls::entry()-}}" property="hasPart" typeof="BlogPosting">
-            {{ types::author(visible=false) }}
+        <div class="section-entry {{ <cls.entry /> -}}" property="hasPart" typeof="BlogPosting">
+            {{ <types.author visible={false} /> }}
 
             <p>
-                <a class="{{-cls::url()-}}" href="{{ page.permalink | safe }}" rel="sameAs">
+                <a class="{{- <cls.url /> -}}" href="{{ page.permalink | safe }}" rel="sameAs">
                     <b class="p-name entry-title" property="headline">
                         {% if page.title %}
                             {{ page.title }}
                         {% elif page.date %}
-                            {{ types::dt(date=page.date, type="published", for="entry") }}
+                            {{ <types.dt date={page.date} type="published" for="entry" /> }}
                         {% endif %}
                     </b>
                 </a>
@@ -76,22 +76,22 @@
 
                 {# putting the page date here is redundant if the page date is used as the page title #}
                 {% if page.date %}
-                    {{ types::dt(date=page.date, type="published", for="entry") }}
+                    {{ <types.dt date={page.date} type="published" for="entry" /> }}
                 {% endif %}
                 {% if page.updated %}
-                    (updated {{ types::dt(date=page.updated, type="updated", for="entry") }})
+                    (updated {{ <types.dt date={page.updated} type="updated" for="entry" /> }})
                 {% endif %}
             </p>
 
             {% if section.extra | get(key="inline_pages", default=true) %}
                 {% if page.summary %}
-                    <div class="{{-cls::summary()-}}" property="abstract">{{ page.summary | safe }}</div>
+                    <div class="{{- <cls.summary /> -}}" property="abstract">{{ page.summary | safe }}</div>
                     <a class="continue-reading-link" href="{{ page.permalink | safe }}#continue-reading">
                         Continue Reading...
                     </a>
                 {% endif %}
             {% else %}
-                <div class="{{-cls::content()-}}" property="articleBody">{{ page.content | safe }}</div>
+                <div class="{{- <cls.content /> -}}" property="articleBody">{{ page.content | safe }}</div>
             {% endif %}
         </div>
     {% endfor %}

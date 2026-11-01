@@ -5,7 +5,7 @@ template = "index.html"
 
 # WELCOME TO NEWT'S COVE
 
-{{divider(name="happy-star")}}
+{{ <divider name="happy-star" /> }}
 
 ## Welcome to my lil place on the internet
 
@@ -23,7 +23,7 @@ I'm Ness Shannon, aka Newt, aka newtbytes! I'm a {{ censor(orig="[trans](/transg
 
 I'm juuuust a lil nerdy. x3
 
-{{divider(name="happy-star")}}
+{{ <divider name="happy-star" /> }}
 
 ## Interests :3
 
@@ -38,9 +38,13 @@ Here's a very short and overly vague list of my interests:
 - Creative writing
   - Science fiction, mostly! I'm currently writing a novel. I should write more about that project....
 
-{% censor() %}
+{% <censor> %}
 ## Links & Socials
 
+- Twitch: <a rel="me" href="https://twitch.tv/newtbytes">newtbytes</a>
+- YouTube: <a rel="me" href="https://www.youtube.com/@newtbytes">newtbytes</a>
+- YouTube (VODs): <a rel="me" href="https://www.youtube.com/@newtbytesvods">newtbytes VODs</a>
+- Instagram:  <a rel="me" href="https://www.instagram.com/newtbytes/">newtbytes</a>
 - Wikipedia: <a rel="me" href="https://en.wikipedia.org/wiki/User:newtbytes">User:Newtbytes</a>
 - Discord: newtbytes
 - Github: <a rel="me" href="https://github.com/newtbytes">newtbytes</a>
@@ -48,9 +52,9 @@ Here's a very short and overly vague list of my interests:
 - Neocities: <a rel="me" href="https://neocities.org/site/newtbytes">neocities.org/site/newtbytes</a>
 - toyhouse: <a rel="me" href="https://toyhou.se/newtbytes">toyhou.se/newtbytes</a>
 - transfem.social: <a rel="me" href="https://transfem.social/@newtbytes">@newtbytes@transfem.social</a>
-{% end %}
+{% </censor> %}
 
-{{divider(name="happy-star")}}
+{{ <divider name="happy-star" /> }}
 
 <div style="text-align:center;">
 
@@ -62,14 +66,14 @@ oh also i have no idea what i'm doing
 ![Caution! This site under construction!](img/stamp/site_under_construction.gif)
 
 there's not much content here. maybe one day i'll actually write something.
-For now, just know that somewhere, a nerdy {{ censor(orig="girly", repl="guy") }} that yearns to express {{ censor(orig="her", repl="his") }} passions online exists.
+For now, just know that somewhere, a nerdy {{ <censor orig="girly" repl="guy" /> }} that yearns to express {{ <censor orig="her" repl="his" /> }} passions online exists.
 </div>
 
-{{divider(name="happy-star")}}
+{{ <divider name="happy-star" /> }}
 
 <div style="float:right;padding:1em;">
 
-![](img/memes/https___github.com_Kautenja_gym-super-mario-bros_blob_master_gym_super_mario_bros__roms_super-mario-bros.nes.jpg)</div>
+![A goofy Mario-themed meme image that only Newt understands. It's a bit hard to describe in this alt text, but bear with me. Weirdly edited text saying, "Friendship ended with 'Vimm's Lair' now [a long very specific GitHub link to a ROM of the original Super Mario Bros for NES] is my best friend." On the left, there's a low resolution screenshot of a GitHub repo checked with a green checkmark, and on the right the Vimm's Layer logo is crossed with a big red X. A weird   correctly colored but spriteless version of the game is in between these two images.](img/memes/https___github.com_Kautenja_gym-super-mario-bros_blob_master_gym_super_mario_bros__roms_super-mario-bros.nes.jpg)</div>
 
 look at this silliness only i understand
 

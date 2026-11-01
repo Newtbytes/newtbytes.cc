@@ -1,6 +1,3 @@
-{% import "macros/types.html" as types %}
-{% import "macros/uf/classes.html" as cls %}
-
 {% extends "webpage.html" %}
 
 {% block meta %}
@@ -14,30 +11,30 @@
     {% set meta_updated = page | get(key="updated", default="") %}
     {% endif %}
 
-    {{ og::article(
-    url=meta_url,
-    title=meta_title,
-    author=meta_author,
-    desc=meta_desc,
-    date=meta_date,
-    updated=meta_updated
-    ) }}
+    {{ <og.article
+    url={meta_url}
+    title={meta_title}
+    author={meta_author}
+    desc={meta_desc}
+    date={meta_date}
+    updated={meta_updated}
+    /> }}
 {% endblock meta %}
 
 {% block og_type %}
-    {{ og::type(value="article") }}
+    {{ <og.type value="article" /> }}
 {% endblock og_type %}
 
 {% block content %}
     <article
         id="article-top"
-        class="{{-cls::entry()-}}"
+        class="{{- <cls.entry /> -}}"
         property="mainEntity"
         {% block schema %} typeof="Article" {% endblock schema %}
     >
-        <h1 class="{{-cls::title()-}}" property="headline">
+        <h1 class="{{- <cls.title /> -}}" property="headline">
             <a
-                class="{{-cls::url()-}}"
+                class="{{- <cls.url /> -}}"
                 {% block href %}
                     {% if current_url is defined %}
                         href="{{current_url | safe}}"
@@ -69,7 +66,7 @@
 
         {% block notes %} {% endblock notes %}
 
-        <p class="{{-cls::summary()-}}" property="abstract">
+        <p class="{{- <cls.summary /> -}}" property="abstract">
             {% block desc %}
                 {% if meta_desc is defined %}
                     {{ meta_desc }}
@@ -80,7 +77,7 @@
         {% block toc %}
         {% endblock toc %}
 
-        <div class="{{-cls::content()-}}" property="articleBody">
+        <div class="{{- <cls.content /> -}}" property="articleBody">
             {% block body %} {% endblock body %}
         </div>
 
@@ -107,7 +104,7 @@
     <h2>Replies</h2>
     <ol class="replies">
         {% for reply in replies %}
-            <li class="{{cls::entry()}} {{cls::citation()}}">
+            <li class="{{ <cls.entry /> }} {{ <cls.citation /> }}">
                 {% set date = reply | get(key="published", default="") %}
                 {% set author = reply | get(key="author") %}
                 {% set content = reply | get(key="content") %}
@@ -122,22 +119,22 @@
                 <header>
                     Reply from
 
-                    {{- types::author(
-                        name = author | get(key="name", default=""),
-                        url = author | get(key="url", default="")
-                    ) -}}
+                    {{- <types.author
+                        name={author | get(key="name", default="")}
+                        url={author | get(key="url", default="")}
+                    /> -}}
 
                     {% if date %}
-                        , published on {{types::dt(date=date, type="published", format="%F")}}
+                        , published on {{ <types.dt date type="published" format="%F" /> }}
                         at {{ date | date(format="%X") -}}
                     {% endif -%}
                 </header>
 
                 <article>
-                    <blockquote class="{{cls::summary()}}">
+                    <blockquote class="{{ <cls.summary /> }}">
                         {{- text | truncate(length=175) -}}
                     </blockquote>
-                    <div class="{{cls::content()}}" style="display:none;">
+                    <div class="{{ <cls.content /> }}" style="display:none;">
                         {{- text -}}
                     </div>
                 </article>

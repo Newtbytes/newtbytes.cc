@@ -1,0 +1,81 @@
+{# Class names for Microformats2 and hAtom #}
+
+{%- component cls.entry() -%}
+    entry h-entry hentry
+{%- endcomponent cls.entry -%}
+
+{%- component cls.feed() -%}
+    feed h-feed hfeed
+{%- endcomponent cls.feed -%}
+
+{%- component cls.title() -%}
+    title entry-title p-name
+{%- endcomponent cls.title -%}
+
+{%- component cls.author() -%}
+    author p-author
+{%- endcomponent cls.author -%}
+
+{%- component cls.dt(type="") -%}
+    dt-{{type}} {{type}}
+{%- endcomponent cls.dt -%}
+
+{%- component cls.summary() -%}
+    summary entry-summary p-summary
+{%- endcomponent cls.summary -%}
+
+{%- component cls.content() -%}
+    content entry-content e-content
+{%- endcomponent cls.content -%}
+
+{%- component cls.url() -%}
+    url u-url
+{%- endcomponent cls.url -%}
+
+{%- component cls.uid() -%}
+    uid u-uid
+{%- endcomponent cls.uid -%}
+
+{%- component cls.citation() -%}
+    h-cite cite
+{%- endcomponent cls.citation -%}
+
+{%- component cls.profile() -%}
+    vcard hcard h-card card
+{%- endcomponent cls.profile -%}
+
+{%- component cls.name() -%}
+    p-name name fn
+{%- endcomponent cls.name -%}
+
+{%- component cls.given_name() -%}
+    n given-name p-given-name
+{%- endcomponent cls.given_name -%}
+
+{%- component cls.family_name() -%}
+    n family-name p-family-name
+{%- endcomponent cls.family_name -%}
+
+{%- component cls.nickname() -%}
+    nickname p-nickname
+{%- endcomponent cls.nickname -%}
+
+{%- component cls.logo() -%}
+    photo u-logo
+{%- endcomponent cls.logo -%}
+
+{%- component cls.email() -%}
+    u-email email
+{%- endcomponent cls.email -%}
+
+{%- component cls.reply() -%}
+    u-in-reply-to
+{%- endcomponent cls.reply -%}
+
+{%- component cls.like() -%}
+    u-like-of
+{%- endcomponent cls.like -%}
+
+{%- component cls.repost() -%}
+    u-repost-of
+{%- endcomponent cls.repost -%}

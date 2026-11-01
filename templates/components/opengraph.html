@@ -1,21 +1,21 @@
-{% macro image(path, alt) %}
+{% component og.image(path, alt) %}
     {% set meta = get_image_metadata(path=path) %}
     <meta property="og:image" content="{{ get_url(path=path) }}">
     <meta property="og:image:width" content="{{ meta.width }}">
     <meta property="og:image:height" content="{{ meta.height }}">
     <meta property="og:image:alt" content="{{ alt | safe }}">
-{% endmacro image %}
+{% endcomponent og.image %}
 
 
-{% macro website(url, title="", desc="") %}
+{% component og.website(url, title=none, desc=none, @config) %}
     <meta property="og:url" content="{{ url | safe }}">
     <meta property="og:site_name" content="{{ config.title | safe }}">
     {% if title %}<meta property="og:title" content="{{ title | safe }}">{% endif%}
     {% if desc %}<meta property="og:description" content="{{ desc | striptags | safe }}">{% endif%}
-{% endmacro website %}
+{% endcomponent og.website %}
 
 
-{% macro article(url, title="", author="", desc="", date="", updated="") %}
+{% component og.article(url, title=none, author=none, desc=none, date=none, updated=none) %}
     {% if author %}<meta property="og:article:author" content="{{ author }}">{% endif %}
     {% if desc %}<meta property="og:article:description" content="{{ desc | striptags | safe }}">{% endif %}
     {% if date %}
@@ -24,17 +24,17 @@
     {% if updated %}
         <meta property="og:article:modified_time" content="{{ updated | date(format='%Y-%m-%dT%H:%M:%SZ') }}">
     {% endif %}
-{% endmacro article %}
+{% endcomponent og.article %}
 
 
-{% macro profile(first, last, username, gender) %}
+{% component og.profile(first, last, username, gender) %}
     <meta property="og:profile:first_name" content="{{ first }}">
     <meta property="og:profile:last_name" content="{{ last }}">
     <meta property="og:profile:username" content="{{ username }}">
     <meta property="og:profile:gender" content="{{ gender }}">
-{% endmacro profile %}
+{% endcomponent og.profile %}
 
 
-{% macro type(value) %}
+{% component og.type(value) %}
     <meta property="og:type" content="{{ value }}">
-{% endmacro type %}
+{% endcomponent og.type %}

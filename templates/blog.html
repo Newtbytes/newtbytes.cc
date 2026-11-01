@@ -1,7 +1,7 @@
 {% extends "article.html" %}
 
 {% block body %}
-    <div class="{{-cls::feed()-}}" typeof="Blog">
+    <div class="{{- <cls.feed /> -}}" typeof="Blog">
         {% block posts %}
         {% endblock posts %}
     </div>

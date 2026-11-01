@@ -1,14 +1,13 @@
-{% import "macros/utils.html" as utils %}
-{% import "macros/uf/classes.html" as cls %}
-
+{% component note(id) %}
 {% set host = "transfem.social" %}
 
 <iframe
     src="https://{{ host }}/embed/notes/{{ id }}"
-    data-misskey-embed-id="v1_{{ utils::rand_str(length=16) }}"
+    data-misskey-embed-id="v1_{{ <utils.rand_str length={16} /> }}"
     loading="lazy"
     referrerpolicy="strict-origin-when-cross-origin"
     style="border: none; width: 100%; max-width: 500px; height: 300px; color-scheme: light dark;"
-    class="{{cls::repost()}}"
+    class="{{ <cls.repost /> }}"
 ></iframe>
 <script defer src="https://{{ host }}/embed.js"></script>
+{% endcomponent note %}
