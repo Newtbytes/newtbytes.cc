@@ -1,6 +1,7 @@
 +++
 title = "Transgender"
 description = "My experiences being transgender"
+date = 2026-11-01
 template = "page.html"
 +++
 
